@@ -1,0 +1,134 @@
+/** general styles */
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 15px;
+  background: #14181c;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.red {
+  color: #ff5252;
+}
+
+/** header && navigation */
+nav {
+  width: 100%;
+  height: 50px;
+  background-color: #ff5252;
+  position: fixed;
+  top: 0;
+}
+
+nav a:hover {
+  color: #14181c;
+  font-weight: bold;
+}
+
+.logo h1 a {
+  color: #fff;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 10px 25px;
+}
+
+.menu {
+  display: flex;
+  float: right;
+  margin-top: 15px;
+}
+
+.menu a {
+  margin-right: 30px;
+  color: #fff;
+}
+
+/* intro section */
+.intro-logged, .intro-not-logged {
+  height: 300px;
+  margin-top: 70px;
+  text-align: center;
+}
+
+.intro-logged h2, .intro-not-logged h2 {
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.intro-logged a, .intro-not-logged a {
+  color: #fff;
+}
+.intro-logged a:hover, .intro-not-logged a:hover {
+  color: #ff5252;
+}
+
+.last-seen {
+  margin-top: 40px;
+  display: inline-flex;
+}
+
+.movie-thumb {
+  margin-left: 50px;
+  border: 2px solid #ff5252;
+  padding: 30px;
+  width: 150px;
+  height: 300px;
+  border-radius: 3px;
+}
+.movie-thumb:hover {
+  background-color: #ff5252;
+}
+
+.movie-cover img {
+  width: 150px;
+  height: 200px;
+}
+
+.movies-actions {
+  margin-top: 30px;
+}
+
+.movies-actions a:hover {
+  color: #fff;
+}
+
+.movies-actions button {
+  background-color: #ff5252;
+  border: #ff5252;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 15px;
+}
+.movies-actions button:hover {
+  background-color: #909090;
+}
+
+.intro-not-logged {
+  margin-top: 250px;
+}
+
+.login-register a {
+  color: #ff5252;
+  font-weight: bold;
+}
+.login-register a:hover {
+  color: #909090;
+}
