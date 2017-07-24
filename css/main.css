@@ -1,13 +1,12 @@
-/** general styles */
+/** general styles, helpers */
 body {
   font-family: "Lato", sans-serif;
   font-size: 15px;
-  background: #14181c;
-  color: #fff;
+  background: #2c3338;
+  color: #9a9fa5;
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
 }
 
 h1 {
@@ -27,6 +26,18 @@ ul {
   color: #ff5252;
 }
 
+.hidden {
+  display: none;
+}
+
+input {
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
 /** header && navigation */
 nav {
   width: 100%;
@@ -37,8 +48,9 @@ nav {
 }
 
 nav a:hover {
-  color: #14181c;
+  color: #2c3338;
   font-weight: bold;
+  text-decoration: line-through;
 }
 
 .logo h1 a {
@@ -59,6 +71,16 @@ nav a:hover {
 .menu a {
   margin-right: 30px;
   color: #fff;
+}
+
+.menu a.selected {
+  color: #2c3338;
+  text-decoration: line-through;
+}
+
+.menu p.welcome {
+  margin: 0;
+  color: #2c3338;
 }
 
 /* intro section */
@@ -117,6 +139,7 @@ nav a:hover {
   border-radius: 4px;
   font-size: 15px;
 }
+
 .movies-actions button:hover {
   background-color: #909090;
 }
@@ -129,6 +152,61 @@ nav a:hover {
   color: #ff5252;
   font-weight: bold;
 }
+
 .login-register a:hover {
   color: #909090;
+}
+
+/** login form */
+.login-form {
+  margin-top: 200px;
+  text-align: center;
+}
+
+.login-form .username, .login-form .password {
+    height: 57px;
+    width: 400px;
+    margin: 0 auto;
+    line-height: 40px;
+    font-size: 18px;
+}
+
+.login-form .username label, .login-form .password label {
+  padding: 15px 20px;
+  background: #363b41;
+  font-size: 15px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.login-form .username input, .login-form .password input {
+  padding: 15px 20px;
+  background: #3b4148;
+  color: #fff;
+  font-size: 15px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.login-form .submit input {
+  margin-top: 10px;
+  background: #ff5252;
+  color: #fff;
+  padding: 15px 103px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.login-form p {
+  margin-top: 10px;
+}
+
+.login-form a {
+  color: #fff;
+}
+
+.login-form a:hover{
+  color: #ff5252;
 }

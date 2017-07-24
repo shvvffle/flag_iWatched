@@ -9,6 +9,7 @@
     <title>iWatched</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 </head>
 
@@ -16,17 +17,18 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="#" class="logo">iWatched</a></h1>
+                <h1><a href="index.php" class="logo">iWatched</a></h1>
             </div>
             <div class="menu">
-                <a href="#">Movies</a>
-                <a href="#">Login</a>
+                <a href="views/movies.php">Movies</a>
+                <!-- if user is logged in <p class="welcome">Welcome back user!</p> -->
+                <a href="controllers/login.php">Login</a>
             </div>
         </nav>
     </header>
     <!-- if user is logged in, see this -->
     <section class="intro-logged">
-        <h2>What have you been watching lately?</h2>
+        <h2>Hello user! What have you been watching lately?</h2>
         <div class="last-seen">
             <div class="movie-thumb">
                 <div class="movie-cover">
@@ -75,7 +77,7 @@
             <!-- show latest added movies -->
         </div>
         <div class="movies-actions">
-            <button><a href="#">Add a Movie</a></button>
+            <button><a href="controllers/add_movie.php">Add a Movie</a></button>
         </div>
     </section>
 
@@ -83,8 +85,7 @@
     <section class="intro-not-logged">
         <h2><span class="red">iWatched</span> enables you to keep a record of the movies you watched</h2>
         <p>Pretty cool right?</p>
-        <p class="login-register">Before starting, please <a href="#">login or register!</a></p>
+        <p class="login-register">Before starting, please <a href="controllers/login.php">login or register!</a></p>
     </section>
 </body>
-
 </html>
