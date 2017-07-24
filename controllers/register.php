@@ -12,31 +12,28 @@
 		}
 
 		if(
-			!empty($_POST["name"]) &&
 			!empty($_POST["username"]) &&
 			!empty($_POST["password"]) &&
 			filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) &&
 			$_POST["password"] === $_POST["rep_password"]
 		) {
 
-			/* confirmar se o utilizador já existe */
+			/* check and confirm if the user already exists */
 			$query = $db->prepare("SELECT email FROM users WHERE email = ?");
 			$query->execute( array($_POST["email"]) );
 			$result = $query->fetchAll( PDO::FETCH_ASSOC );
 
 			if(empty($result)) {
-				/* se não existir, fazer o INSERT na BD */
-
+				/* if the user doesn't exist, INSERT in db */
 				$password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 				$query = $db->prepare("
 					INSERT INTO users
-					(name, email, password, username)
-					VALUES(?, ?, ?, ?)
+					(email, password, username)
+					VALUES(?, ?, ?)
 				");
 				$query->execute(
 					array(
-						$_POST["name"],
 						$_POST["email"],
 						$password,
 						$_POST["username"]
@@ -45,12 +42,10 @@
 
 				$message = "Account created successfully!";
 				header("Location: ../index.php");
-			}
-			else {
+			} else {
 				$message = "This user already exists. Please <a href='login.php'>login instead.</a>";
 			}
-		}
-		else {
+		} else {
 			$message = "Fill in all fields correctly.";
 		}
 	}
@@ -80,6 +75,9 @@
         </nav>
     </header>
     <section class="login-register-form">
+    <?php
+		if(isset($message)) echo "<p class='red'>" .$message. "</p>";
+	?>
     	<h2>Create an account to keep record of what you've been watching</h2>
 		<form method="post" action="register.php">
 			<div class="email">

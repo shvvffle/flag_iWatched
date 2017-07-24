@@ -15,13 +15,13 @@
 		/* validation */
 		if(
 			!empty($_POST["password"]) &&
-			filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)
+			!empty($_POST["username"])
 		) {
 
 			$query = $db->prepare("
-				SELECT user_id, password FROM users WHERE email = ?
+				SELECT user_id, password FROM users WHERE username = ?
 			");
-			$query->execute( array($_POST["email"]) );
+			$query->execute( array($_POST["username"]) );
 			$user = $query->fetchAll( PDO::FETCH_ASSOC );
 
 			if(!empty($user)) {
