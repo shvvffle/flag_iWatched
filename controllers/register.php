@@ -41,7 +41,7 @@
 				);
 
 				$message = "Account created successfully!";
-				header("Location: ../index.php");
+				header("Location: login.php");
 			} else {
 				$message = "This user already exists. Please <a href='login.php'>login instead.</a>";
 			}

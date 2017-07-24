@@ -1,5 +1,11 @@
 <?php
     require_once("models/config.php");
+
+    $query = $db->prepare("
+                SELECT user_id, username FROM users
+            ");
+    $query->execute( array($_POST["username"]) );
+    $user = $query->fetchAll( PDO::FETCH_ASSOC );
 ?>
 
 <!DOCTYPE html>
@@ -22,14 +28,22 @@
             </div>
             <div class="menu">
                 <a href="views/movies.php">Movies</a>
-                <!-- if user is logged in <p class="welcome">Welcome back user!</p> -->
-                <a href="controllers/login.php">Login</a>
+                <?php
+                    if(isset($_SESSION["user_id"])){
+                        echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
+                    } else {
+                        echo "<a href='controllers/login.php'>Login</a>";
+
+                    }
+                ?>
             </div>
         </nav>
     </header>
-    <!-- if user is logged in, see this -->
+    <?php
+        if(isset($_SESSION["user_id"])){
+    ?>
     <section class="intro-logged">
-        <h2>Hello user! What have you been watching lately?</h2>
+        <h2>Hello <span class="red"><?php echo $user[0]["username"]; ?>!</span> What have you been watching lately?</h2>
         <div class="last-seen">
             <div class="movie-thumb">
                 <div class="movie-cover">
@@ -81,12 +95,16 @@
             <button><a href="controllers/add_movie.php">Add a Movie</a></button>
         </div>
     </section>
-
-    <!-- if user is NOT logged in, see this -->
+    <?php
+       } else {
+    ?>
     <section class="intro-not-logged">
         <h2><span class="red">iWatched</span> enables you to keep a record of the movies you watched</h2>
         <p>Pretty cool right?</p>
         <p class="login-register">Before starting, please <a href="controllers/login.php">login or register!</a></p>
     </section>
+    <?php
+       }
+    ?>
 </body>
 </html>
