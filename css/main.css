@@ -160,20 +160,25 @@ nav a:hover {
 }
 
 /** login form */
-.login-form {
-  margin-top: 200px;
+.login-register-form {
+  margin-top: 100px;
   text-align: center;
 }
 
-.login-form .username, .login-form .password {
-    height: 57px;
+.login-register-form form {
+  margin-top: 80px;
+}
+
+.login-register-form .username, .login-register-form .password,
+.login-register-form .email, .login-register-form .repeat-password {
+    height: 60px;
     width: 400px;
     margin: 0 auto;
-    line-height: 40px;
     font-size: 18px;
 }
 
-.login-form .username label, .login-form .password label {
+.login-register-form .username label, .login-register-form .password label,
+.login-register-form .email label, .login-register-form .repeat-password label {
   padding: 15px 20px;
   background: #363b41;
   font-size: 15px;
@@ -181,16 +186,18 @@ nav a:hover {
   border-bottom-left-radius: 3px;
 }
 
-.login-form .username input, .login-form .password input {
+.login-register-form .username input, .login-register-form .password input,
+.login-register-form .email input, .login-register-form .repeat-password input {
   padding: 15px 20px;
   background: #3b4148;
   color: #fff;
   font-size: 15px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+  width: 240px;
 }
 
-.login-form .submit input {
+.login-register-form .submit input {
   margin-top: 10px;
   background: #ff5252;
   color: #fff;
@@ -199,16 +206,21 @@ nav a:hover {
   text-transform: uppercase;
   font-weight: bold;
   border-radius: 3px;
+  cursor: pointer;
 }
 
-.login-form p {
+.login-register-form .submit input:hover {
+  background: #909090;
+}
+
+.login-register-form p {
   margin-top: 10px;
 }
 
-.login-form a {
+.login-register-form a {
   color: #fff;
 }
 
-.login-form a:hover{
+.login-register-form a:hover{
   color: #ff5252;
 }

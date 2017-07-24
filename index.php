@@ -4,7 +4,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>iWatched</title>
     <meta charset="UTF-8">
