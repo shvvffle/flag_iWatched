@@ -24,7 +24,7 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="index.php" class="logo">iWatched</a></h1>
+                <h1><a href="#" class="logo">iWatched</a></h1>
             </div>
             <div class="menu">
                 <a href="views/movies.php">Movies</a>
@@ -99,6 +99,8 @@
        } else {
     ?>
     <section class="intro-not-logged">
+        <span class="fa fa-clock-o" aria-hidden="true"></span>
+        <span class="fa fa-film" aria-hidden="true"></span>
         <h2><span class="red">iWatched</span> enables you to keep a record of the movies you watched</h2>
         <p>Pretty cool right?</p>
         <p class="login-register">Before starting, please <a href="controllers/login.php">login or register!</a></p>

@@ -149,7 +149,13 @@ nav a:hover {
 }
 
 .intro-not-logged {
-  margin-top: 250px;
+  margin-top: 150px;
+}
+
+.intro-not-logged .fa {
+  font-size: 70px;
+  color: #ff5252;
+  margin: 10px 15px;
 }
 
 .login-register a {
