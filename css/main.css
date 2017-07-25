@@ -31,7 +31,7 @@ ul {
   display: none;
 }
 
-input {
+input, textarea {
   background: none;
   border: none;
   outline: none;
@@ -167,35 +167,32 @@ nav a:hover {
   color: #909090;
 }
 
-/** login form */
-.login-register-form {
+/** login, register, add a movie form */
+.login-register-form, .add-movie-form {
   margin-top: 100px;
   text-align: center;
 }
 
-.login-register-form form {
+.login-register-form form, .add-movie-form form {
   margin-top: 80px;
 }
 
-.login-register-form .username, .login-register-form .password,
-.login-register-form .email, .login-register-form .repeat-password {
+.login-register-form div, .add-movie-form div {
     height: 60px;
     width: 400px;
     margin: 0 auto;
     font-size: 18px;
 }
 
-.login-register-form .username label, .login-register-form .password label,
-.login-register-form .email label, .login-register-form .repeat-password label {
-  padding: 15px 20px;
+.login-register-form label, .add-movie-form label {
+  padding: 16px 20px;
   background: #363b41;
   font-size: 15px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
 
-.login-register-form .username input, .login-register-form .password input,
-.login-register-form .email input, .login-register-form .repeat-password input {
+.login-register-form input:not(.register), .add-movie-form input, .add-movie-form textarea {
   padding: 15px 20px;
   background: #3b4148;
   color: #fff;
@@ -205,7 +202,22 @@ nav a:hover {
   width: 240px;
 }
 
-.login-register-form .submit input {
+.add-movie-form .description {
+  display: flex;
+  height: 150px;
+  width: 300px;
+}
+
+.add-movie-form .description label {
+  height: 48px;
+}
+
+.add-movie-form textarea {
+  height: 80px;
+  width: 243px;
+}
+
+.login-register-form .submit input, .add-movie-form .submit input {
   margin-top: 10px;
   background: #ff5252;
   color: #fff;
@@ -217,7 +229,7 @@ nav a:hover {
   cursor: pointer;
 }
 
-.login-register-form .submit input:hover {
+.login-register-form .submit input:hover, .add-movie-form .submit input:hover {
   background: #909090;
 }
 

@@ -109,7 +109,7 @@
 				<input type="password" name="rep_password" placeholder="Repeat password" required>
 			</div>
 			<div class="submit">
-				<input type="submit" name="submit" value="Create account">
+				<input class="register" type="submit" name="submit" value="Create account">
 			</div>
 		</form>
 		<p>Already registered? <a href="login.php">Login now</a></p>

@@ -4,7 +4,7 @@
     $query = $db->prepare("
                 SELECT user_id, username FROM users
             ");
-    $query->execute( array($_POST["username"]) );
+    $query->execute( array($_GET["username"]) );
     $user = $query->fetchAll( PDO::FETCH_ASSOC );
 ?>
 
