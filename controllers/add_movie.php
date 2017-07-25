@@ -1,11 +1,68 @@
 <?php
     require_once("../models/config.php");
 
+    // check logged in user
     $query = $db->prepare("
                 SELECT user_id, username FROM users
             ");
     $query->execute( array($_GET["username"]) );
     $user = $query->fetchAll( PDO::FETCH_ASSOC );
+
+    // check form validation
+	$allowed_extensions = array(
+		"image/jpeg" => ".jpg",
+		"image/png" => ".png"
+	);
+
+	if(isset($_POST["submit"])) {
+		foreach($_POST as $key => $value) {
+			$_POST[$key] = strip_tags(trim($value));
+		}
+
+		if(
+			!empty($_POST["username"]) &&
+			!empty($_POST["password"]) &&
+			($_FILES["cover"]["type"] === "image/jpeg" || $_FILES["cover"]["type"] === "image/png") &&
+			$_FILES["cover"]["size"] > 0 &&
+			$_FILES["cover"]["size"] <= 2000000 &&
+			$_FILES["cover"]["error"] === 0
+		) {
+
+			/* check and confirm if the movie already exists */
+			$query = $db->prepare("SELECT title FROM movies WHERE title = ?");
+			$query->execute( array($_POST["title"]) );
+			$result = $query->fetchAll( PDO::FETCH_ASSOC );
+
+			if(empty($result)) {
+				/* if the movie doesn't exist, INSERT in db */
+				$query = $db->prepare("
+					INSERT INTO movies
+					(title, release_year, director, actors, genre, description, rating)
+					VALUES(?, ?, ?, ?, ?, ?, ?)
+				");
+				$query->execute(
+					array(
+						$_POST["title"],
+						$_POST["release_year"],
+						$_POST["director"],
+						$_POST["actors"],
+						$_POST["genre"],
+						$_POST["description"],
+						$_POST["rating"]
+					)
+				);
+
+				$filename = date("YmdHis") . "_" .mt_rand(10000, 99999) . $allowed_extensions[$_FILES["cover"]["type"]];
+				move_uploaded_file($_FILES["cover"]["tmp_name"], null . $filename);
+				$message = "Movie added successfully!";
+				header("Location: ../views/movies.php");
+			} else {
+				$message = "This movie already exists.";
+			}
+		} else {
+			$message = "Fill in all fields correctly.";
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +157,6 @@
 					<option value="5">5</option>
 				</select>
 			</div>
-			<!-- photo upload -->
 			<div class="cover">
 				<label>
 					<span class="fa fa-picture-o" aria-hidden="true"></span>
