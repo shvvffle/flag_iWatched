@@ -31,7 +31,7 @@ ul {
   display: none;
 }
 
-input, textarea {
+input, textarea, select {
   background: none;
   border: none;
   outline: none;
@@ -173,8 +173,16 @@ nav a:hover {
   text-align: center;
 }
 
-.login-register-form form, .add-movie-form form {
+.add-movie-form {
+  margin-top: 50px;
+}
+
+.login-register-form form {
   margin-top: 80px;
+}
+
+.add-movie-form form {
+  margin-top: 50px;
 }
 
 .login-register-form div, .add-movie-form div {
@@ -192,7 +200,11 @@ nav a:hover {
   border-bottom-left-radius: 3px;
 }
 
-.login-register-form input:not(.register), .add-movie-form input, .add-movie-form textarea {
+.add-movie-form label {
+  padding: 15px 20px;
+}
+
+.login-register-form input:not(.register), .add-movie-form input:not(.add), .add-movie-form textarea {
   padding: 15px 20px;
   background: #3b4148;
   color: #fff;
@@ -204,17 +216,41 @@ nav a:hover {
 
 .add-movie-form .description {
   display: flex;
-  height: 150px;
+  height: 90px;
   width: 300px;
+}
+
+.add-movie-form .description span {
+  line-height: 45px;
 }
 
 .add-movie-form .description label {
   height: 48px;
+  width: 18px;
 }
 
 .add-movie-form textarea {
-  height: 80px;
-  width: 243px;
+  height: 78px;
+}
+
+.add-movie-form select {
+  height: 48px;
+  width: 240px;
+  background: #3b4148;
+  color: #717572;
+  font-size: 15px;
+  -webkit-appearance: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  padding-left: 22px;
+}
+
+.add-movie-form .cover input {
+  color: #717572;
+  height: 48px;
+  padding: 11px 18px;
 }
 
 .login-register-form .submit input, .add-movie-form .submit input {

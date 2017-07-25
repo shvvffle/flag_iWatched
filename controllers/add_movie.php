@@ -109,7 +109,7 @@
 				<input type="file" name="cover" placeholder="Movie Cover">
 			</div>
 			<div class="submit">
-				<input type="submit" name="submit" value="Add a movie">
+				<input class="add" type="submit" name="submit" value="Add a movie">
 			</div>
 		</form>
     </section>
