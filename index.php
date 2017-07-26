@@ -88,9 +88,9 @@
                     <p><?php echo $movie["rating"];?></p>
                 </div>
                 <div class="hover-movie-detail">
-                    <span class="fa fa-plus" aria-hidden="true">
-                        <a href="views/movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>"></a>
-                    </span>
+                    <a href="views/movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">
+                        <span class="fa fa-plus" aria-hidden="true"></span>
+                    </a>
                 </div>
             </div>
         <?php
