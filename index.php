@@ -1,11 +1,24 @@
 <?php
     require_once("models/config.php");
 
-    $query = $db->prepare("
-                SELECT user_id, username FROM users
+    $user_logged = $_SESSION["user_id"];
+
+    if(isset($user_logged)){
+        // get user data
+        $query = $db->prepare("
+                    SELECT user_id, username FROM users
+                ");
+        $query->execute( array($_GET["username"]) );
+        $user = $query->fetchAll( PDO::FETCH_ASSOC );
+
+        // load movies
+        $fetch_movie = $db->prepare("
+                SELECT * FROM movies WHERE user_id = $user_logged ORDER BY movie_id DESC
             ");
-    $query->execute( array($_GET["username"]) );
-    $user = $query->fetchAll( PDO::FETCH_ASSOC );
+
+        $fetch_movie->execute();
+        $movies = $fetch_movie->fetchAll( PDO::FETCH_ASSOC );
+    }
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +42,7 @@
             <div class="menu">
                 <a href="views/movies.php">Movies</a>
                 <?php
-                    if(isset($_SESSION["user_id"])){
+                    if(isset($user_logged)){
                         echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
                     } else {
                         echo "<a href='controllers/login.php'>Login</a>";
@@ -40,56 +53,43 @@
         </nav>
     </header>
     <?php
-        if(isset($_SESSION["user_id"])){
+        if(isset($user_logged)){
     ?>
     <section class="intro-logged">
         <h2>Hello <span class="red"><?php echo $user[0]["username"]; ?>!</span> What have you been watching lately?</h2>
         <div class="last-seen">
+        <?php
+            foreach($movies as $movie) {
+        ?>
             <div class="movie-thumb">
                 <div class="movie-cover">
-                    <img src="http://img.moviepostershop.com/heartbeats-movie-poster-2010-1010557028.jpg">
+                    <img src="images/<?php echo $movie["cover"];?>">
                 </div>
                 <div class="movie-title">
-                    <h4>Movie Title</h4>
+                    <h4><?php echo $movie["title"];?></h4>
+                </div>
+                <div class="movie-release-date">
+                    <p><?php echo $movie["release_year"];?></p>
+                </div>
+                <div class="movie-director">
+                    <p><?php echo $movie["director"];?></p>
+                </div>
+                <div class="movie-actors">
+                    <p><?php echo $movie["actors"];?></p>
+                </div>
+                <div class="movie-genre">
+                    <p><?php echo $movie["genre"];?></p>
+                </div>
+                <div class="movie-description">
+                    <p><?php echo $movie["description"];?></p>
                 </div>
                 <div class="movie-rating">
-                    <p>4 stars</p>
+                    <p><?php echo $movie["rating"];?></p>
                 </div>
             </div>
-            <div class="movie-thumb">
-                <div class="movie-cover">
-                    <img src="http://img.moviepostershop.com/heartbeats-movie-poster-2010-1010557028.jpg">
-                </div>
-                <div class="movie-title">
-                    <h4>Movie Title</h4>
-                </div>
-                <div class="movie-rating">
-                    <p>4 stars</p>
-                </div>
-            </div>
-            <div class="movie-thumb">
-                <div class="movie-cover">
-                    <img src="http://img.moviepostershop.com/heartbeats-movie-poster-2010-1010557028.jpg">
-                </div>
-                <div class="movie-title">
-                    <h4>Movie Title</h4>
-                </div>
-                <div class="movie-rating">
-                    <p>4 stars</p>
-                </div>
-            </div>
-            <div class="movie-thumb">
-                <div class="movie-cover">
-                    <img src="http://img.moviepostershop.com/heartbeats-movie-poster-2010-1010557028.jpg">
-                </div>
-                <div class="movie-title">
-                    <h4>Movie Title</h4>
-                </div>
-                <div class="movie-rating">
-                    <p>4 stars</p>
-                </div>
-            </div>
-            <!-- show latest added movies -->
+        <?php
+            }
+        ?>
         </div>
         <div class="movies-actions">
             <button><a href="controllers/add_movie.php">Add a Movie</a></button>

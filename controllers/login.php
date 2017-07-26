@@ -68,6 +68,9 @@
         </nav>
     </header>
     <section class="login-register-form">
+	    <?php
+			if(isset($message)) echo "<p class='red'>" .$message. "</p>";
+		?>
     	<h2>Log in to keep record of what you've been watching</h2>
 		<form method="post" action="login.php">
 			<div class="username">

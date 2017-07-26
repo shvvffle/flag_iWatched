@@ -1,7 +1,7 @@
 <?php
     require_once("../models/config.php");
 
-    // check logged in user
+    // get user data
     $query = $db->prepare("
                 SELECT user_id, username FROM users
             ");
@@ -20,8 +20,13 @@
 		}
 
 		if(
-			!empty($_POST["username"]) &&
-			!empty($_POST["password"]) &&
+			!empty($_POST["title"]) &&
+			!empty($_POST["release_year"]) &&
+			!empty($_POST["director"]) &&
+			!empty($_POST["actors"]) &&
+			!empty($_POST["genre"]) &&
+			!empty($_POST["description"]) &&
+			!empty($_POST["rating"]) &&
 			($_FILES["cover"]["type"] === "image/jpeg" || $_FILES["cover"]["type"] === "image/png") &&
 			$_FILES["cover"]["size"] > 0 &&
 			$_FILES["cover"]["size"] <= 2000000 &&
@@ -37,8 +42,8 @@
 				/* if the movie doesn't exist, INSERT in db */
 				$query = $db->prepare("
 					INSERT INTO movies
-					(title, release_year, director, actors, genre, description, rating)
-					VALUES(?, ?, ?, ?, ?, ?, ?)
+					(title, release_year, director, actors, genre, description, rating, cover, user_id)
+					VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
 				");
 				$query->execute(
 					array(
@@ -48,14 +53,16 @@
 						$_POST["actors"],
 						$_POST["genre"],
 						$_POST["description"],
-						$_POST["rating"]
+						$_POST["rating"],
+						$_POST["cover"],
+						$_SESSION["user_id"]
 					)
 				);
 
 				$filename = date("YmdHis") . "_" .mt_rand(10000, 99999) . $allowed_extensions[$_FILES["cover"]["type"]];
-				move_uploaded_file($_FILES["cover"]["tmp_name"], null . $filename);
+				move_uploaded_file($_FILES["cover"]["tmp_name"], "iWatched/images" . $filename);
 				$message = "Movie added successfully!";
-				header("Location: ../views/movies.php");
+				header("Location: ../views/movie_detail.php=" . $movie_id);
 			} else {
 				$message = "This movie already exists.";
 			}
@@ -84,14 +91,7 @@
             </div>
             <div class="menu">
                 <a href="../views/movies.php">Movies</a>
-                <?php
-                    if(isset($_SESSION["user_id"])){
-                        echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
-                    } else {
-                        echo "<a href='controllers/login.php'>Login</a>";
-
-                    }
-                ?>
+                <p class='welcome'>Welcome back <?php echo $user[0]["username"]; ?>!</p>
             </div>
         </nav>
     </header>
