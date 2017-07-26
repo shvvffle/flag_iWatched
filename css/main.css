@@ -115,7 +115,7 @@ nav a:hover {
   margin-left: 50px;
   background: #414446;
   width: 250px;
-  height: 500px;
+  height: 450px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -123,15 +123,15 @@ nav a:hover {
 }
 
 .movie-thumb .first-detail-row {
-  margin: -20px 0px 20px 0px;
+  margin: -2px 0px -3px 0px;
   display: flex;
   align-items: baseline;
 }
 
-.movie-thumb div:not(.movies-actions):not(.movie-cover):not(.first-detail-row) {
+.movie-thumb div:not(.movies-actions):not(.movie-cover):not(.first-detail-row):not(.hover-movie-detail) {
   display: flex;
   align-items: baseline;
-  margin: 10px 20px;
+  margin: -5px 20px;
 }
 
 .movie-thumb div span {
@@ -149,8 +149,20 @@ nav a:hover {
   border-radius: 10px 10px 0px 0px;
 }
 
-.movie-title {
-  margin-top: 0px;
+.movie-rating {
+  padding-bottom: 5px;
+}
+
+.hover-movie-detail {
+  display: none;
+}
+
+.movie-thumb:hover .hover-movie-detail {
+  display: block;
+  background: #414446;
+  width: 250px;
+  height: 450px;
+  font-size: 20px;
 }
 
 .movies-actions {

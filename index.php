@@ -6,14 +6,14 @@
     if(isset($user_logged)){
         // get user data
         $query = $db->prepare("
-                    SELECT user_id, username FROM users
+                    SELECT user_id, username FROM users WHERE user_id = $user_logged
                 ");
-        $query->execute( array($_GET["username"]) );
+        $query->execute();
         $user = $query->fetchAll( PDO::FETCH_ASSOC );
 
         // load movies
         $fetch_movie = $db->prepare("
-                SELECT * FROM movies WHERE user_id = $user_logged ORDER BY movie_id LIMIT 8
+                SELECT * FROM movies WHERE user_id = $user_logged ORDER BY movie_id LIMIT 4
             ");
 
         $fetch_movie->execute();
@@ -87,8 +87,10 @@
                     <span class="fa fa-star" aria-hidden="true"></span>
                     <p><?php echo $movie["rating"];?></p>
                 </div>
-                <div class="movies-actions">
-                    <button><a href="views/movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">Movie Detail</a></button>
+                <div class="hover-movie-detail">
+                    <span class="fa fa-plus" aria-hidden="true">
+                        <a href="views/movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>"></a>
+                    </span>
                 </div>
             </div>
         <?php
