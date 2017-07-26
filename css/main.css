@@ -108,28 +108,54 @@ nav a:hover {
 
 .last-seen {
   margin-top: 40px;
-  display: inline-flex;
+  display: flex;
 }
 
 .movie-thumb {
   margin-left: 50px;
-  border: 2px solid #ff5252;
-  padding: 30px;
-  width: 150px;
-  height: 300px;
-  border-radius: 3px;
+  background: #414446;
+  width: 250px;
+  height: 500px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
 }
-.movie-thumb:hover {
-  background-color: #ff5252;
+
+.movie-thumb .first-detail-row {
+  margin: -20px 0px 20px 0px;
+  display: flex;
+  align-items: baseline;
+}
+
+.movie-thumb div:not(.movies-actions):not(.movie-cover):not(.first-detail-row) {
+  display: flex;
+  align-items: baseline;
+  margin: 10px 20px;
+}
+
+.movie-thumb div span {
+  margin-right: 5px;
+  color: #ff5252;
+}
+
+.movie-cover {
+  height: auto;
 }
 
 .movie-cover img {
-  width: 150px;
-  height: 200px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.movie-title {
+  margin-top: 0px;
 }
 
 .movies-actions {
   margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .movies-actions a:hover {

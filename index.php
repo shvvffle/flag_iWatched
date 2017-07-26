@@ -13,7 +13,7 @@
 
         // load movies
         $fetch_movie = $db->prepare("
-                SELECT * FROM movies WHERE user_id = $user_logged ORDER BY movie_id DESC
+                SELECT * FROM movies WHERE user_id = $user_logged ORDER BY movie_id LIMIT 8
             ");
 
         $fetch_movie->execute();
@@ -65,26 +65,30 @@
                 <div class="movie-cover">
                     <img src="images/<?php echo $movie["cover"];?>">
                 </div>
-                <div class="movie-title">
-                    <h4><?php echo $movie["title"];?></h4>
-                </div>
-                <div class="movie-release-date">
-                    <p><?php echo $movie["release_year"];?></p>
+                <div class="first-detail-row">
+                    <div class="movie-title">
+                        <span class="fa fa-film" aria-hidden="true"></span>
+                        <h4><?php echo $movie["title"];?></h4>
+                    </div>
+                    <div class="movie-release-date">
+                        <span class="fa fa-calendar-o" aria-hidden="true"></span>
+                        <p><?php echo $movie["release_year"];?></p>
+                    </div>
                 </div>
                 <div class="movie-director">
+                    <span class="fa fa-video-camera" aria-hidden="true"></span>
                     <p><?php echo $movie["director"];?></p>
                 </div>
-                <div class="movie-actors">
-                    <p><?php echo $movie["actors"];?></p>
-                </div>
                 <div class="movie-genre">
+                    <span class="fa fa-flask" aria-hidden="true"></span>
                     <p><?php echo $movie["genre"];?></p>
                 </div>
-                <div class="movie-description">
-                    <p><?php echo $movie["description"];?></p>
-                </div>
                 <div class="movie-rating">
+                    <span class="fa fa-star" aria-hidden="true"></span>
                     <p><?php echo $movie["rating"];?></p>
+                </div>
+                <div class="movies-actions">
+                    <button><a href="views/movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">Movie Detail</a></button>
                 </div>
             </div>
         <?php

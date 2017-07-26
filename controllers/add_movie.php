@@ -117,7 +117,7 @@
 			</div>
 			<div class="director">
 				<label>
-					<span class="fa fa-user" aria-hidden="true"></span>
+					<span class="fa fa-video-camera" aria-hidden="true"></span>
 					<span class="hidden">Movie Director</span>
 				</label>
 				<input type="text" name="director" placeholder="Movie Director" required>
