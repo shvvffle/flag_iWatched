@@ -115,7 +115,7 @@ nav a:hover {
   margin-left: 50px;
   background: #414446;
   width: 250px;
-  height: 450px;
+  height: 400px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -123,12 +123,12 @@ nav a:hover {
 }
 
 .movie-thumb .first-detail-row {
-  margin: -2px 0px -3px 0px;
+  margin: 5px 20px;
   display: flex;
   align-items: baseline;
 }
 
-.movie-thumb div:not(.movies-actions):not(.movie-cover):not(.first-detail-row):not(.hover-movie-detail) {
+.movie-thumb div:not(.movie-cover):not(.first-detail-row):not(.hover-movie-detail) {
   display: flex;
   align-items: baseline;
   margin: -5px 20px;
@@ -149,10 +149,6 @@ nav a:hover {
   border-radius: 10px 10px 0px 0px;
 }
 
-.movie-rating {
-  padding-bottom: 5px;
-}
-
 .hover-movie-detail {
   display: none;
 }
@@ -160,9 +156,19 @@ nav a:hover {
 .movie-thumb:hover .hover-movie-detail {
   display: block;
   background: #414446;
-  width: 250px;
-  height: 450px;
   font-size: 20px;
+  position: absolute;
+  width: 250px;
+  height: 400px;
+  border-radius: 10px;
+  transition: all ease .5s;
+  -webkit-transition: all ease .5s;
+  -moz-transition: all ease .5s;
+}
+
+.movie-thumb:hover .hover-movie-detail .hover-movie-detail-content a {
+  font-size: 50px;
+  margin: 80% auto;
 }
 
 .movies-actions {
@@ -252,6 +258,10 @@ nav a:hover {
   width: 240px;
 }
 
+.login-register-form .captcha input {
+  width: 297px;
+}
+
 .add-movie-form .description {
   display: flex;
   height: 90px;
@@ -303,6 +313,10 @@ nav a:hover {
   cursor: pointer;
 }
 
+.login-register-form input.register {
+  margin-top: 70px;
+}
+
 .login-register-form .submit input:hover, .add-movie-form .submit input:hover {
   background: #909090;
 }
@@ -311,10 +325,109 @@ nav a:hover {
   margin-top: 10px;
 }
 
+.login-register-form p.register {
+  margin-top: 70px;
+}
+
 .login-register-form a {
   color: #fff;
 }
 
 .login-register-form a:hover{
   color: #ff5252;
+}
+
+/** movie detail */
+.movie-detail {
+  margin: 200px auto;
+  width: 550px;
+}
+
+.movie-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 550px;
+  height: 275px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-card .movie-image {
+  min-width: 200px;
+  padding: 0px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  z-index: 99;
+}
+
+.movie-card .movie-image .movie-poster {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+.movie-card .movie-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  vertical-align: center;
+  position: relative;
+  z-index: 99;
+}
+
+.movie-card .about-movie {
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  padding: 0px 10px;
+  position: relative;
+  z-index: 99;
+}
+
+.movie-card .about-movie h3 {
+  color: #fff;
+  font-size: 25px;
+  margin-bottom: 10px;
+  margin-top: 0px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.movie-card .about-movie .movie-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.movie-card .about-movie .movie-info span {
+  color: #ff5252;
+}
+
+.movie-card .about-movie .movie-desc {
+  font-size: 14px;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  color: white;
+  position: relative;
+  z-index: 99;
+}
+
+.movie-card .wavy {
+  position: absolute;
+  bottom: calc(-20px);
+  fill: #ff5252;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  z-index: 0;
 }

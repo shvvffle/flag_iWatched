@@ -62,6 +62,13 @@
             foreach($movies as $movie) {
         ?>
             <div class="movie-thumb">
+                <div class="hover-movie-detail">
+                    <div class="hover-movie-detail-content">
+                        <a href="views/movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">
+                            <span class="fa fa-search-plus" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
                 <div class="movie-cover">
                     <img src="images/<?php echo $movie["cover"];?>">
                 </div>
@@ -74,23 +81,6 @@
                         <span class="fa fa-calendar-o" aria-hidden="true"></span>
                         <p><?php echo $movie["release_year"];?></p>
                     </div>
-                </div>
-                <div class="movie-director">
-                    <span class="fa fa-video-camera" aria-hidden="true"></span>
-                    <p><?php echo $movie["director"];?></p>
-                </div>
-                <div class="movie-genre">
-                    <span class="fa fa-flask" aria-hidden="true"></span>
-                    <p><?php echo $movie["genre"];?></p>
-                </div>
-                <div class="movie-rating">
-                    <span class="fa fa-star" aria-hidden="true"></span>
-                    <p><?php echo $movie["rating"];?></p>
-                </div>
-                <div class="hover-movie-detail">
-                    <a href="views/movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">
-                        <span class="fa fa-plus" aria-hidden="true"></span>
-                    </a>
                 </div>
             </div>
         <?php

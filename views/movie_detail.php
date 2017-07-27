@@ -39,8 +39,8 @@
     <title>iWatched - <?php echo $movie[0]["title"];?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
 </head>
@@ -49,10 +49,10 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="#" class="logo">iWatched</a></h1>
+                <h1><a href="../index.php" class="logo">iWatched</a></h1>
             </div>
             <div class="menu">
-                <a href="views/movies.php">Movies</a>
+                <a href="movies.php">Movies</a>
                 <?php
                     if(isset($user_logged)){
                         echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
@@ -64,43 +64,48 @@
             </div>
         </nav>
     </header>
-    <section class="intro-logged">
-        <h2>Hello <span class="red"><?php echo $user[0]["username"]; ?>!</span> What have you been watching lately?</h2>
-        <div class="last-seen">
-        <?php
-            foreach($movie as $movie_detail) {
-        ?>
-            <div class="movie-thumb">
-                <div class="movie-cover">
-                    <img src="../images/<?php echo $movie[0]["cover"];?>">
-                </div>
-                <div class="first-detail-row">
-                    <div class="movie-title">
-                        <span class="fa fa-film" aria-hidden="true"></span>
-                        <h4><?php echo $movie[0]["title"];?></h4>
-                    </div>
-                    <div class="movie-release-date">
-                        <span class="fa fa-calendar-o" aria-hidden="true"></span>
-                        <p><?php echo $movie[0]["release_year"];?></p>
-                    </div>
-                </div>
-                <div class="movie-director">
-                    <span class="fa fa-video-camera" aria-hidden="true"></span>
-                    <p><?php echo $movie[0]["director"];?></p>
-                </div>
-                <div class="movie-genre">
-                    <span class="fa fa-flask" aria-hidden="true"></span>
-                    <p><?php echo $movie[0]["genre"];?></p>
-                </div>
-                <div class="movie-rating">
-                    <span class="fa fa-star" aria-hidden="true"></span>
-                    <p><?php echo $movie[0]["rating"];?></p>
-                </div>
-            </div>
-        <?php
-            }
-        ?>
-        </div>
-    </section>
+    <section class="movie-detail">
+       	<h2>Oh so you've watched <span class="red"><?php echo $movie[0]["title"];?></span> already? That's cool</h2>
+		<div class="movie-card">
+		  <section class="movie-image">
+		    <img class="movie-poster" src="../images/<?php echo $movie[0]["cover"];?>" alt="<?php echo $movie[0]["title"];?>" />
+		  </section>
+		  <section class="movie-wrapper">
+		    <div class="about-movie">
+		      <h3><?php echo $movie[0]["title"];?></h3>
+		      <div class="movie-info">
+		        <p>
+		        	<span class="fa fa-calendar-o" aria-hidden="true"></span>
+		        	<?php echo $movie[0]["release_year"];?>
+		        </p>
+		        <p>
+		        	<span class="fa fa-star" aria-hidden="true"></span>
+		        	<?php echo $movie[0]["rating"];?>
+		        </p>
+		        <p>
+		        	<span class="fa fa-flask" aria-hidden="true"></span>
+		        	<?php echo $movie[0]["genre"];?>
+		        </p>
+		      </div>
+		      <div class="movie-info">
+		        <p>
+		        	<span class="fa fa-video-camera" aria-hidden="true"></span>
+		        	<?php echo $movie[0]["director"];?>
+		        </p>
+		        <p>
+		        	<span class="fa fa-user-o" aria-hidden="true"></span>
+		        	<?php echo $movie[0]["actors"];?>
+		        </p>
+		      </div>
+		      <div class="movie-desc">
+		        <p><?php echo $movie[0]["description"];?></p>
+		      </div>
+		    </div>
+		  </section>
+		  <svg class="wavy" viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
+		    <path d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z" style="stroke: none;"></path>
+		  </svg>
+		</div>
+	</section>
 </body>
 </html>

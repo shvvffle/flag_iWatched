@@ -14,6 +14,7 @@
 		if(
 			!empty($_POST["username"]) &&
 			!empty($_POST["password"]) &&
+			$_SESSION["captcha"] === $_POST["captcha"] &&
 			filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) &&
 			$_POST["password"] === $_POST["rep_password"]
 		) {
@@ -108,11 +109,15 @@
 				</label>
 				<input type="password" name="rep_password" placeholder="Repeat password" required>
 			</div>
+			<div class="captcha">
+				<img src="captcha.php" alt="captcha">
+				<input type="text" name="captcha" required>
+			</div>
 			<div class="submit">
 				<input class="register" type="submit" name="submit" value="Create account">
 			</div>
 		</form>
-		<p>Already registered? <a href="login.php">Login now</a></p>
+		<p class="register">Already registered? <a href="login.php">Login now</a></p>
     </section>
 </body>
 </html>
