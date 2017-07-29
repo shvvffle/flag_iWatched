@@ -2,11 +2,20 @@
     require_once("../models/config.php");
 
     // get user data
-    $query = $db->prepare("
-                SELECT user_id, username FROM users
-            ");
-    $query->execute( array($_GET["username"]) );
-    $user = $query->fetchAll( PDO::FETCH_ASSOC );
+ 	$user_logged = $_SESSION["user_id"];
+
+    if(!isset($user_logged)) {
+		header("Location: ../index.php");
+		exit;
+	}
+
+ 	$user_query = $db->prepare("
+ 		SELECT user_id, username 
+ 		FROM users WHERE user_id = $user_logged
+    ");
+    $user_query->execute();
+    $user = $user_query->fetchAll( PDO::FETCH_ASSOC );
+
 
     // check form validation
 	$allowed_extensions = array(
@@ -14,7 +23,7 @@
 		"image/png" => ".png"
 	);
 
-	if(isset($_POST["submit"])) {
+	if($_SERVER['REQUEST_METHOD'] == "POST") {
 		foreach($_POST as $key => $value) {
 			$_POST[$key] = strip_tags(trim($value));
 		}
@@ -40,6 +49,9 @@
 
 			if(empty($result)) {
 				/* if the movie doesn't exist, INSERT in db */
+				$filename = date("YmdHis") . "_" .mt_rand(10000, 99999) . $allowed_extensions[$_FILES["cover"]["type"]];
+				move_uploaded_file($_FILES["cover"]["tmp_name"], "C:/xampp/htdocs/iWatched/images/" . $filename);
+
 				$query = $db->prepare("
 					INSERT INTO movies
 					(title, release_year, director, actors, genre, description, rating, cover, user_id)
@@ -54,15 +66,17 @@
 						$_POST["genre"],
 						$_POST["description"],
 						$_POST["rating"],
-						$_POST["cover"],
-						$_SESSION["user_id"]
+						$filename,
+						$user_logged
 					)
 				);
 
-				$filename = date("YmdHis") . "_" .mt_rand(10000, 99999) . $allowed_extensions[$_FILES["cover"]["type"]];
-				move_uploaded_file($_FILES["cover"]["tmp_name"], "iWatched/images" . $filename);
+				$movie_id = $db->lastInsertId();
+
+				var_dump($_REQUEST);
+
 				$message = "Movie added successfully!";
-				header("Location: ../views/movie_detail.php=" . $movie_id);
+				//header("Location: ../views/movie_detail.php=" . $movie_id);
 			} else {
 				$message = "This movie already exists.";
 			}
