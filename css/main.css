@@ -195,11 +195,11 @@ nav a:hover {
   background-color: #909090;
 }
 
-.intro-not-logged {
+.intro-not-logged, .intro-logged {
   margin-top: 150px;
 }
 
-.intro-not-logged .fa {
+.intro-not-logged .fa, .intro-logged .fa {
   font-size: 70px;
   color: #ff5252;
   margin: 10px 15px;
@@ -284,6 +284,25 @@ nav a:hover {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   padding-left: 15px;
+}
+
+.add-movie-form .description {
+  height: 70px;
+}
+
+.add-movie-form .description label {
+  height: 60px;
+}
+
+.add-movie-form .description label .fa {
+  position: absolute;
+  line-height: 58px;
+  margin-left: -8px;
+}
+
+.add-movie-form .description textarea {
+  padding-top: 10px;
+  height: 50px;
 }
 
 .add-movie-form .cover label {

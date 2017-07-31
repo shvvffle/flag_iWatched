@@ -56,6 +56,8 @@
         if(isset($user_logged)){
     ?>
     <section class="intro-logged">
+        <span class="fa fa-clock-o" aria-hidden="true"></span>
+        <span class="fa fa-film" aria-hidden="true"></span>
         <h2>Hello <span class="red"><?php echo $user[0]["username"]; ?>!</span> What have you been watching lately?</h2>
         <div class="last-seen">
         <?php
