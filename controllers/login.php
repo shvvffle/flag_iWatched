@@ -88,7 +88,7 @@
 				<input type="password" name="password" placeholder="Password" required>
 			</div>
 			<div class="submit">
-				<input type="submit" name="submit" value="Login">
+				<input class="login" type="submit" name="submit" value="Login">
 			</div>
 		</form>
 		<p>Not registered? <a href="register.php">Sign up now</a></p>

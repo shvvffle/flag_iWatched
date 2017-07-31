@@ -3,7 +3,7 @@
 
 	header("Content-Type: image/png");
 
-	$image = imagecreate(336, 60);
+	$image = imagecreate(320, 60);
 
 	imagecolorallocate($image, 54, 59, 65);
 

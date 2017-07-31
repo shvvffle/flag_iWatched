@@ -37,6 +37,9 @@ input, textarea, select {
   outline: none;
   margin: 0;
   padding: 0;
+  resize: none;
+  -webkit-appearance: none;
+  font-family: "Lato", sans-serif;
 }
 
 /** header && navigation */
@@ -217,10 +220,6 @@ nav a:hover {
   text-align: center;
 }
 
-.add-movie-form {
-  margin-top: 50px;
-}
-
 .login-register-form form {
   margin-top: 80px;
 }
@@ -237,48 +236,39 @@ nav a:hover {
 }
 
 .login-register-form label, .add-movie-form label {
-  padding: 16px 20px;
+  height: 50px;
+  display: inline-block;
+  width: 40px;
+  line-height: 49px;
+  padding: 0px 10px;
   background: #363b41;
   font-size: 15px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
 
-.add-movie-form label {
-  padding: 15px 20px;
-}
-
-.login-register-form input:not(.register), .add-movie-form input:not(.add), .add-movie-form textarea {
-  padding: 15px 20px;
+.login-register-form input:not(.register):not(.login):not([name="captcha"]), .add-movie-form input:not(.add), .add-movie-form textarea {
+  height: 50px;
+  display: inline-block;
   background: #3b4148;
   color: #fff;
   font-size: 15px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   width: 240px;
+  padding-left: 15px;
 }
 
-.login-register-form .captcha input {
-  width: 297px;
-}
-
-.add-movie-form .description {
-  display: flex;
-  height: 90px;
-  width: 300px;
-}
-
-.add-movie-form .description span {
-  line-height: 45px;
-}
-
-.add-movie-form .description label {
-  height: 48px;
-  width: 18px;
-}
-
-.add-movie-form textarea {
-  height: 78px;
+.login-register-form input[name="captcha"] {
+  width: 320px;
+  text-align: center;
+  height: 50px;
+  display: inline-block;
+  background: #3b4148;
+  color: #fff;
+  font-size: 15px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .add-movie-form select {
