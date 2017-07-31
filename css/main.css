@@ -272,8 +272,9 @@ nav a:hover {
 }
 
 .add-movie-form select {
-  height: 48px;
-  width: 240px;
+  height: 50px;
+  width: 256px;
+  display: inline-block;
   background: #3b4148;
   color: #717572;
   font-size: 15px;
@@ -282,13 +283,22 @@ nav a:hover {
   border-bottom-right-radius: 3px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  padding-left: 22px;
+  padding-left: 15px;
+}
+
+.add-movie-form .cover label {
+  height: 78px;
+}
+
+.add-movie-form .cover label .fa {
+  display: block;
+  line-height: 70px;
 }
 
 .add-movie-form .cover input {
   color: #717572;
-  height: 48px;
-  padding: 11px 18px;
+  height: 30px;
+  padding: 24px 8px;
 }
 
 .login-register-form .submit input, .add-movie-form .submit input {
@@ -301,6 +311,10 @@ nav a:hover {
   font-weight: bold;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.add-movie-form .submit input {
+  margin-top: 50px;
 }
 
 .login-register-form input.register {

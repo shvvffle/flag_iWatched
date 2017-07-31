@@ -150,13 +150,6 @@
 				</label>
 				<input type="text" name="genre" placeholder="Movie Genre" required>
 			</div>
-			<div class="description">
-				<label>
-					<span class="fa fa-commenting" aria-hidden="true"></span>
-					<span class="hidden">Movie Description</span>
-				</label>
-				<textarea name="description" placeholder="Movie Description" required></textarea>
-			</div>
 			<div class="rating">
 				<label>
 					<span class="fa fa-star" aria-hidden="true"></span>
@@ -171,6 +164,14 @@
 					<option value="5">5</option>
 				</select>
 			</div>
+			<!--
+			<div class="description">
+				<label>
+					<span class="fa fa-commenting" aria-hidden="true"></span>
+					<span class="hidden">Movie Description</span>
+				</label>
+				<textarea name="description" placeholder="Movie Description" required></textarea>
+			</div>-->
 			<div class="cover">
 				<label>
 					<span class="fa fa-picture-o" aria-hidden="true"></span>
