@@ -25,7 +25,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>iWatched</title>
+    <title>iWatched - Movies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
@@ -58,24 +58,24 @@
         <?php
             foreach($movies as $movie) {
         ?>
-            <div class="movie-thumb">
-                <div class="hover-movie-detail">
-                    <div class="hover-movie-detail-content">
-                        <a href="views/movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">
-                            <span class="fa fa-search-plus" aria-hidden="true"></span>
-                        </a>
-                    </div>
+            <div class="container">
+              <div class="card-media">
+                <!-- media container -->
+                <div class="card-media-object-container">
+                  <div class="card-media-object" style="background-image: url(../images/<?php echo $movie["cover"];?>);"></div>
                 </div>
-                <div class="movie-rating">
-                    <span><?php echo $movie["rating"];?></span>
+                <!-- body container -->
+                <div class="card-media-body">
+                  <div class="card-media-body-top">
+                    <span class="subtle"><?php echo $movie["release_year"];?></span>
+                  </div>
+                  <span class="card-media-body-heading"><?php echo $movie["title"];?></span>
+                  <div class="card-media-body-supporting-bottom">
+                    <span class="card-media-body-supporting-bottom-text subtle"><?php echo $movie["genre"];?></span>
+                    <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?php echo $movie["title"];?></span>
+                  </div>
                 </div>
-                <div class="movie-cover">
-                    <img src="../images/<?php echo $movie["cover"];?>">
-                </div>
-                <div class="movie-info">
-                    <h4 class="truncate"><?php echo $movie["title"];?></h4>
-                    <p><?php echo $movie["genre"];?></p>
-                </div>
+              </div>
             </div>
         <?php
             }
