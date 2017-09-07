@@ -24,8 +24,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>iWatched</title>
     <meta charset="UTF-8">
+    <title>iWatched</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
@@ -40,7 +40,13 @@
                 <h1><a href="#" class="logo">iWatched</a></h1>
             </div>
             <div class="menu">
-                <a href="views/movies.php">Movies</a>
+                <?php
+                    if(isset($user_logged)){
+                ?>
+                    <a href="views/movies.php">Movies</a>
+                <?php
+                    }
+                ?>
                 <?php
                     if(isset($user_logged)){
                         echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
@@ -56,8 +62,6 @@
         if(isset($user_logged)){
     ?>
     <section class="intro-logged">
-        <span class="fa fa-clock-o" aria-hidden="true"></span>
-        <span class="fa fa-film" aria-hidden="true"></span>
         <h2>Hello <span class="red"><?php echo $user[0]["username"]; ?>!</span> What have you been watching lately?</h2>
         <div class="last-seen">
         <?php
@@ -77,7 +81,7 @@
                 <div class="first-detail-row">
                     <div class="movie-title">
                         <span class="fa fa-film" aria-hidden="true"></span>
-                        <h4><?php echo $movie["title"];?></h4>
+                        <h4 class="truncate"><?php echo $movie["title"];?></h4>
                     </div>
                     <div class="movie-release-date">
                         <span class="fa fa-calendar-o" aria-hidden="true"></span>

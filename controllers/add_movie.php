@@ -50,14 +50,14 @@
 			if(empty($result)) {
 				/* if the movie doesn't exist, INSERT in db */
 				$filename = date("YmdHis") . "_" .mt_rand(10000, 99999) . $allowed_extensions[$_FILES["cover"]["type"]];
-				move_uploaded_file($_FILES["cover"]["tmp_name"], "C:/xampp/htdocs/iWatched/images/" . $filename);
+				move_uploaded_file($_FILES["cover"]["tmp_name"], "../images/" . $filename);
 
 				$query = $db->prepare("
 					INSERT INTO movies
 					(title, release_year, director, actors, genre, description, rating, cover, user_id)
 					VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
 				");
-				$query->execute(
+				$result = $query->execute(
 					array(
 						$_POST["title"],
 						$_POST["release_year"],
@@ -73,7 +73,10 @@
 
 				$movie_id = $db->lastInsertId();
 
-				var_dump($_REQUEST);
+				if(!$result){
+					echo $db->errorInfo();
+					exit;
+				}
 
 				$message = "Movie added successfully!";
 				//header("Location: ../views/movie_detail.php=" . $movie_id);
@@ -88,8 +91,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta charset="UTF-8">
     <title>iWatched - Add a movie</title>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />

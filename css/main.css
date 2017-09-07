@@ -31,6 +31,13 @@ ul {
   display: none;
 }
 
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80px;
+}
+
 input, textarea, select {
   background: none;
   border: none;
@@ -49,6 +56,7 @@ nav {
   background-color: #ff5252;
   position: fixed;
   top: 0;
+  z-index: 100;
 }
 
 nav a:hover {
@@ -126,7 +134,7 @@ nav a:hover {
 }
 
 .movie-thumb .first-detail-row {
-  margin: 5px 20px;
+  margin: 5px 15px;
   display: flex;
   align-items: baseline;
 }
@@ -134,7 +142,7 @@ nav a:hover {
 .movie-thumb div:not(.movie-cover):not(.first-detail-row):not(.hover-movie-detail) {
   display: flex;
   align-items: baseline;
-  margin: -5px 20px;
+  margin: -5px 5px;
 }
 
 .movie-thumb div span {
@@ -144,6 +152,7 @@ nav a:hover {
 
 .movie-cover {
   height: auto;
+  min-height: 335px;
 }
 
 .movie-cover img {
@@ -170,8 +179,11 @@ nav a:hover {
 }
 
 .movie-thumb:hover .hover-movie-detail .hover-movie-detail-content a {
-  font-size: 50px;
   margin: 80% auto;
+}
+
+.movie-thumb:hover .hover-movie-detail .hover-movie-detail-content .fa {
+  font-size: 50px;
 }
 
 .movies-actions {
@@ -200,9 +212,9 @@ nav a:hover {
 }
 
 .intro-not-logged .fa, .intro-logged .fa {
-  font-size: 70px;
+  font-size: 20px;
   color: #ff5252;
-  margin: 10px 15px;
+  margin: 10px;
 }
 
 .login-register a {
@@ -370,11 +382,10 @@ nav a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  max-width: 550px;
+  max-width: 1000px;
   height: 275px;
   border-radius: 4px;
   position: relative;
-  overflow: hidden;
 }
 
 .movie-card .movie-image {
@@ -403,6 +414,8 @@ nav a:hover {
   vertical-align: center;
   position: relative;
   z-index: 99;
+  min-width: 300px;
+  max-width: 600px;
 }
 
 .movie-card .about-movie {

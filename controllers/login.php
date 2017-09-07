@@ -46,8 +46,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta charset="UTF-8">
     <title>iWatched - Login</title>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
@@ -62,7 +62,13 @@
                 <h1><a href="../index.php" class="logo">iWatched</a></h1>
             </div>
             <div class="menu">
-                <a href="../views/movies.php">Movies</a>
+                <?php
+                    if(isset($user_logged)){
+                ?>
+                    <a href="../views/movies.php">Movies</a>
+                <?php
+                    }
+                ?>
                 <a class="selected" href="#">Login</a>
             </div>
         </nav>
