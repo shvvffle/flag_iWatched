@@ -111,4 +111,8 @@
        }
     ?>
 </body>
+<!-- // fazer uma partilha de playlists
+// pesquisa de filmes
+// apagar -->
 </html>
+
