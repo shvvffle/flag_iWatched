@@ -496,22 +496,8 @@ nav a:hover {
   width: 700px;
 }
 
-.u-float-right {
+.float-right {
   float: right;
-}
-
-.u-flex-center {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-
-.subtle {
-  color: #888;
-  font-size: 12px;
 }
 
 .card-media {
@@ -559,6 +545,16 @@ nav a:hover {
   display: block;
 }
 
+.card-media-body-top a {
+  float: right;
+  color: #2c3338;
+  font-size: 15px;
+}
+
+.card-media-body-top a:hover {
+  color: #9a9fa5;
+}
+
 .card-media-body-heading {
   display: block;
   margin-top: 10px;
@@ -575,11 +571,6 @@ nav a:hover {
   padding: 0 15px;
   transition: all 300ms ease-out;
   width: 100%;
-}
-
-.card-media:hover .card-media-body-supporting-bottom {
-  opacity: 0;
-  transform: translateY(-8px);
 }
 
 .card-media-body-supporting-bottom-text {

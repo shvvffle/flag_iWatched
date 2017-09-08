@@ -67,12 +67,15 @@
                 <!-- body container -->
                 <div class="card-media-body">
                   <div class="card-media-body-top">
-                    <span class="subtle"><?php echo $movie["release_year"];?></span>
+                    <span><?php echo $movie["release_year"];?></span>
+                    <a href="movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">
+                        <span class="fa fa-search-plus" aria-hidden="true"></span>
+                    </a>
                   </div>
-                  <span class="card-media-body-heading"><?php echo $movie["title"];?></span>
+                  <span class="card-media-body-heading red"><?php echo $movie["title"];?></span>
                   <div class="card-media-body-supporting-bottom">
-                    <span class="card-media-body-supporting-bottom-text subtle"><?php echo $movie["genre"];?></span>
-                    <span class="card-media-body-supporting-bottom-text subtle u-float-right"><?php echo $movie["title"];?></span>
+                    <span class="card-media-body-supporting-bottom-text"><?php echo $movie["genre"];?></span>
+                    <span class="card-media-body-supporting-bottom-text float-right"><?php echo $movie["director"];?></span>
                   </div>
                 </div>
               </div>
