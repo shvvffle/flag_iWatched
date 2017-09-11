@@ -10,10 +10,6 @@ body {
   width: 100%;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 h1 {
   margin: 0;
   padding: 0;
@@ -265,6 +261,10 @@ nav a:hover {
     font-size: 18px;
 }
 
+.add-movie-form .submit {
+  height: 150px;
+}
+
 .login-register-form label, .add-movie-form label {
   height: 50px;
   display: inline-block;
@@ -346,8 +346,8 @@ nav a:hover {
 
 .add-movie-form .cover input {
   color: #717572;
-  height: 30px;
-  padding: 24px 8px;
+  height: 34px;
+  padding: 22px 8px;
 }
 
 .login-register-form .submit input, .add-movie-form .submit input {
@@ -536,19 +536,21 @@ nav a:hover {
   background-color: #fff;
   float: left;
   height: 100%;
-  padding: 12px 15px;
   position: relative;
   width: 65%;
 }
 
 .card-media-body-top {
   display: block;
+  margin-left: 15px;
+  margin-top: 10px;
 }
 
 .card-media-body-top a {
   float: right;
   color: #2c3338;
   font-size: 15px;
+  margin-right: 15px;
 }
 
 .card-media-body-top a:hover {
@@ -561,17 +563,25 @@ nav a:hover {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 20px;
+  margin-left: 15px;
 }
 
 .card-media-body-supporting-bottom {
   position: absolute;
   bottom: 10px;
   left: 0;
-  opacity: 1;
-  padding: 0 15px;
   transition: all 300ms ease-out;
   width: 100%;
 }
+
+.card-media-body-supporting-bottom span:first-child {
+  margin-left: 15px;
+}
+
+.card-media-body-supporting-bottom span:last-child {
+  margin-right: 15px;
+}
+
 
 .card-media-body-supporting-bottom-text {
   display: inline-block;
