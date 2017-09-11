@@ -39,6 +39,10 @@ ul {
   width: 80px;
 }
 
+.center {
+  text-align: center;
+}
+
 input, textarea, select {
   background: none;
   border: none;

@@ -47,6 +47,7 @@
                     xhr.send(param);
 
                     this.parentNode.parentNode.parentNode.parentNode.remove();
+                    var success_msg = document.getElementById('success_msg').innerHTML = "The movie has been deleted successfully";
                 }
             }
         }
@@ -108,6 +109,7 @@
         <?php
             }
         ?>
+        <div id="success_msg" class="red center"></div>
         </div>
         <div class="movies-actions">
             <button><a href="../controllers/add_movie.php">Add a Movie</a></button>
