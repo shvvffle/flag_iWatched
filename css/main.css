@@ -546,8 +546,11 @@ nav a:hover {
   margin-top: 10px;
 }
 
-.card-media-body-top a {
+.card-movie-actions {
   float: right;
+}
+
+.card-media-body-top a {
   color: #2c3338;
   font-size: 15px;
   margin-right: 15px;

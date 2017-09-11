@@ -31,6 +31,26 @@
     <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
+    <script>
+        window.onload = function() {
+            var buttons = document.querySelectorAll('.delete-movie');
+
+            for(var i = 0; i < buttons.length; i++) {
+
+                buttons[i].onclick = function() {
+                    var movie_id = this.dataset.id;
+                    var param = "request=delete&movie_id=" + movie_id;
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "../controllers/requests.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.send(param);
+
+                    this.parentNode.parentNode.parentNode.parentNode.remove();
+                }
+            }
+        }
+    </script>   
 </head>
 
 <body>
@@ -68,9 +88,14 @@
                 <div class="card-media-body">
                   <div class="card-media-body-top">
                     <span><?php echo $movie["release_year"];?></span>
-                    <a href="movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">
-                        <span class="fa fa-search-plus" aria-hidden="true"></span>
-                    </a>
+                    <div class="card-movie-actions">
+                        <a href="movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">
+                            <span class="fa fa-search-plus" aria-hidden="true"></span>
+                        </a>
+                        <a class="delete-movie" data-id="<?php echo $movie["movie_id"];?>">
+                            <span class="fa fa-trash-o red" aria-hidden="true"></span>
+                        </a>
+                    </div>
                   </div>
                   <span class="card-media-body-heading red"><?php echo $movie["title"];?></span>
                   <div class="card-media-body-supporting-bottom">
