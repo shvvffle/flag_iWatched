@@ -51,6 +51,16 @@
             <div class="logo">
                 <h1><a href="../index.php" class="logo">iWatched</a></h1>
             </div>
+            <div class="search-bar">
+                <div class="search-container">
+                  <div class="search-icon-btn">
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <div class="search-input">
+                    <input type="search" class="search-bar" placeholder="Search for a movie...">
+                  </div>
+                </div>
+            </div>
             <div class="menu">
                 <a href="movies.php">Movies</a>
                 <?php

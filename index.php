@@ -31,6 +31,21 @@
     <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <script type="text/javascript">
+        window.onload = function() {
+            function loadJSON() {
+              var xhttp = new XMLHttpRequest();
+
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  console.log(this.responseText);
+                }
+              };
+              xhttp.open("GET", "controllers/results.json", true);
+              xhttp.send();
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -38,6 +53,16 @@
         <nav>
             <div class="logo">
                 <h1><a href="#" class="logo">iWatched</a></h1>
+            </div>
+            <div class="search-bar">
+                <div class="search-container">
+                  <div class="search-icon-btn">
+                    <i class="fa fa-search"></i>
+                  </div>
+                  <div class="search-input">
+                    <input type="search" class="search-bar" placeholder="Search for a movie...">
+                  </div>
+                </div>
             </div>
             <div class="menu">
                 <?php
@@ -111,8 +136,5 @@
        }
     ?>
 </body>
-<!-- // fazer uma partilha de playlists
-// pesquisa de filmes
-// apagar -->
 </html>
 
