@@ -1,5 +1,5 @@
 <?php
-    require_once("../models/config.php");
+    require_once("config.php");
 
     $user_logged = $_SESSION["user_id"];
 
@@ -13,7 +13,7 @@
 
         // load movie detail
 		if(!isset($_GET["movie_id"])) {
-			header("Location: ../index.php");
+			header("Location: index.php");
 			exit;
 		}
 
@@ -39,17 +39,17 @@
 	<meta charset="UTF-8">
     <title>iWatched - <?php echo $movie[0]["title"];?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="../index.php" class="logo">iWatched</a></h1>
+                <h1><a href="index.php" class="logo">iWatched</a></h1>
             </div>
             <div class="search-bar">
                 <div class="search-container">
@@ -67,7 +67,7 @@
                     if(isset($user_logged)){
                         echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
                     } else {
-                        echo "<a href='controllers/login.php'>Login</a>";
+                        echo "<a href='login.php'>Login</a>";
 
                     }
                 ?>
@@ -78,7 +78,7 @@
        	<h2>Oh so you've watched <span class="red"><?php echo $movie[0]["title"];?></span> already? That's cool</h2>
 		<div class="movie-card">
 		  <section class="movie-image">
-		    <img class="movie-poster" src="../images/<?php echo $movie[0]["cover"];?>" alt="<?php echo $movie[0]["title"];?>" />
+		    <img class="movie-poster" src="images/<?php echo $movie[0]["cover"];?>" alt="<?php echo $movie[0]["title"];?>" />
 		  </section>
 		  <section class="movie-wrapper">
 		    <div class="about-movie">

@@ -1,5 +1,5 @@
 <?php
-    require_once("../models/config.php");
+    require_once("config.php");
 
     $user_logged = $_SESSION["user_id"];
 
@@ -27,10 +27,10 @@
     <meta charset="UTF-8">
     <title>iWatched - Movies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <script>
         window.onload = function() {
             var buttons = document.querySelectorAll('.delete-movie');
@@ -42,7 +42,7 @@
                     var param = "request=delete&movie_id=" + movie_id;
 
                     var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "../controllers/requests.php", true);
+                    xhr.open("POST", "requests.php", true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                     xhr.send(param);
 
@@ -58,7 +58,7 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="../index.php" class="logo">iWatched</a></h1>
+                <h1><a href="index.php" class="logo">iWatched</a></h1>
             </div>
             <div class="search-bar">
                 <div class="search-container">
@@ -76,7 +76,7 @@
                     if(isset($user_logged)){
                         echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
                     } else {
-                        echo "<a href='controllers/login.php'>Login</a>";
+                        echo "<a href='login.php'>Login</a>";
 
                     }
                 ?>
@@ -93,7 +93,7 @@
               <div class="card-media">
                 <!-- media container -->
                 <div class="card-media-object-container">
-                  <div class="card-media-object" style="background-image: url(../images/<?php echo $movie["cover"];?>);"></div>
+                  <div class="card-media-object" style="background-image: url(images/<?php echo $movie["cover"];?>);"></div>
                 </div>
                 <!-- body container -->
                 <div class="card-media-body">
@@ -122,7 +122,7 @@
         <div id="success_msg" class="red center"></div>
         </div>
         <div class="movies-actions">
-            <button><a href="../controllers/add_movie.php">Add a Movie</a></button>
+            <button><a href="add_movie.php">Add a Movie</a></button>
         </div>
     </section>
 </body>

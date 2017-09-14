@@ -1,5 +1,5 @@
 <?php
-    require_once("models/config.php");
+    require_once("config.php");
 
     $user_logged = $_SESSION["user_id"];
 
@@ -37,7 +37,7 @@
                 var xhttp = new XMLHttpRequest(),
                     response;
 
-                xhttp.open("GET", "controllers/results.json", true);
+                xhttp.open("GET", "controllers/search.php", true);
 
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
@@ -54,28 +54,28 @@
                     search_bar_value = search_bar.value,
                     movies_db = response,
                     movie_title,
-                    movie_id;
+                    movie_id,
+                    link = document.createElement('a');
 
                 for(var i = 0; i < movies_db.length; i++){
-                    movie_title = movies_db[i].title;
-                    movie_id = movies_db[i].movie_id;
+
+                    console.log(movies_db[i].title.indexOf(search_bar_value));
+
+                    if(movies_db[i].title.indexOf(search_bar_value)){
+                        link.textContent = movies_db[i].title;
+                        link.href = 'movie_detail.php?movie_id=' + movies_db[i].movie_id;
+                        div.style.display = 'block';
+                        div.appendChild(link);
+                    }
                 }
-
-                var link = document.createElement('a');
-                link.textContent = movie_title;
-                link.href = 'views/movie_detail.php?movie_id=' + movie_id;
-
-                if(movie_title == search_bar_value){
-                    div.style.display = 'block';
-                    div.appendChild(link);
-                }
-
             }
 
             search_bar.onkeyup = function(){
                 var timeout = 0;
                 clearTimeout(timeout);
-                timeout = setTimeout(queryDB, 1000);
+                if(this.value.length > 2){
+                    timeout = setTimeout(queryDB, 500);
+                }
             }
         }
     </script>
@@ -102,7 +102,7 @@
                 <?php
                     if(isset($user_logged)){
                 ?>
-                    <a href="views/movies.php">Movies</a>
+                    <a href="movies.php">Movies</a>
                 <?php
                     }
                 ?>
@@ -110,7 +110,7 @@
                     if(isset($user_logged)){
                         echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
                     } else {
-                        echo "<a href='controllers/login.php'>Login</a>";
+                        echo "<a href='login.php'>Login</a>";
 
                     }
                 ?>
@@ -129,7 +129,7 @@
             <div class="movie-thumb">
                 <div class="hover-movie-detail">
                     <div class="hover-movie-detail-content">
-                        <a href="views/movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">
+                        <a href="movie_detail.php?movie_id=<?php echo $movie["movie_id"];?>">
                             <span class="fa fa-search-plus" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -153,7 +153,7 @@
         ?>
         </div>
         <div class="movies-actions">
-            <button><a href="controllers/add_movie.php">Add a Movie</a></button>
+            <button><a href="add_movie.php">Add a Movie</a></button>
         </div>
     </section>
     <?php
@@ -164,7 +164,7 @@
         <span class="fa fa-film" aria-hidden="true"></span>
         <h2><span class="red">iWatched</span> enables you to keep a record of the movies you watched</h2>
         <p>Pretty cool right?</p>
-        <p class="login-register">Before starting, please <a href="controllers/login.php">login or register!</a></p>
+        <p class="login-register">Before starting, please <a href="login.php">login or register!</a></p>
     </section>
     <?php
        }

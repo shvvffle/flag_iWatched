@@ -167,10 +167,6 @@ nav a:hover {
 /* transition effect */
 .search-input input.search-bar,
 .search-icon-btn {
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -o-transition: all 0.5s;
   transition: all 0.5s;
 }
 
@@ -283,8 +279,6 @@ nav a:hover {
   border-radius: 10px;
   z-index: 99;
   transition: all ease .5s;
-  -webkit-transition: all ease .5s;
-  -moz-transition: all ease .5s;
 }
 
 .movie-thumb:hover .hover-movie-detail .hover-movie-detail-content a {

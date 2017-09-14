@@ -9,7 +9,7 @@
 
 	$font_color = imagecolorallocate($image, 113, 117, 114);
 
-	$font_path = "atwriter.ttf";
+	$font_path = "assets/atwriter.ttf";
 
 	$captcha = substr( sha1(mt_rand(10000, 99999)), 0, 7);
 

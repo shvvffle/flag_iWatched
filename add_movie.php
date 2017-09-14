@@ -1,11 +1,11 @@
 <?php
-    require_once("../models/config.php");
+    require_once("config.php");
 
     // get user data
  	$user_logged = $_SESSION["user_id"];
 
     if(!isset($user_logged)) {
-		header("Location: ../index.php");
+		header("Location: index.php");
 		exit;
 	}
 
@@ -79,7 +79,6 @@
 				}
 
 				$message = "Movie added successfully!";
-				//header("Location: ../views/movie_detail.php=" . $movie_id);
 			} else {
 				$message = "This movie already exists.";
 			}
@@ -94,20 +93,20 @@
 	<meta charset="UTF-8">
     <title>iWatched - Add a movie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="../index.php" class="logo">iWatched</a></h1>
+                <h1><a href="index.php" class="logo">iWatched</a></h1>
             </div>
             <div class="menu">
-                <a href="../views/movies.php">Movies</a>
+                <a href="movies.php">Movies</a>
                 <p class='welcome'>Welcome back <?php echo $user[0]["username"]; ?>!</p>
             </div>
         </nav>
