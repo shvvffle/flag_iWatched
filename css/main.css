@@ -181,6 +181,23 @@ nav a:hover {
   width: 270px;
 }
 
+#suggestions_search {
+  width: 230px;
+  height: 100px;
+  background: #2C3338;
+  position: absolute;
+  left: 201px;
+  display: none;
+}
+
+#suggestions_search a {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  display: block;
+  color: #9a9fa5;
+}
+
 /* intro section */
 .intro-logged, .intro-not-logged {
   height: 300px;

@@ -32,17 +32,50 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <script type="text/javascript">
-        window.onload = function() {
-            function loadJSON() {
-              var xhttp = new XMLHttpRequest();
+        window.onload = function(){
+            function queryDB(){
+                var xhttp = new XMLHttpRequest(),
+                    response;
 
-              xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                  console.log(this.responseText);
+                xhttp.open("GET", "controllers/results.json", true);
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        response = JSON.parse(xhttp.responseText);
+                        compareResults(response);
+                    }
+                };
+                xhttp.send();
+            }
+
+            function compareResults(response){
+                var search_bar = document.getElementById('search_bar'),
+                    div = document.getElementById('suggestions_search'),
+                    search_bar_value = search_bar.value,
+                    movies_db = response,
+                    movie_title,
+                    movie_id;
+
+                for(var i = 0; i < movies_db.length; i++){
+                    movie_title = movies_db[i].title;
+                    movie_id = movies_db[i].movie_id;
                 }
-              };
-              xhttp.open("GET", "controllers/results.json", true);
-              xhttp.send();
+
+                var link = document.createElement('a');
+                link.textContent = movie_title;
+                link.href = 'views/movie_detail.php?movie_id=' + movie_id;
+
+                if(movie_title == search_bar_value){
+                    div.style.display = 'block';
+                    div.appendChild(link);
+                }
+
+            }
+
+            search_bar.onkeyup = function(){
+                var timeout = 0;
+                clearTimeout(timeout);
+                timeout = setTimeout(queryDB, 1000);
             }
         }
     </script>
@@ -60,9 +93,10 @@
                     <i class="fa fa-search"></i>
                   </div>
                   <div class="search-input">
-                    <input type="search" class="search-bar" placeholder="Search for a movie...">
+                    <input type="search" id="search_bar" class="search-bar" placeholder="Search for a movie...">
                   </div>
                 </div>
+                <div id="suggestions_search"></div>
             </div>
             <div class="menu">
                 <?php
