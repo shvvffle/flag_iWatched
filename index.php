@@ -37,7 +37,7 @@
                 var xhttp = new XMLHttpRequest(),
                     response;
 
-                xhttp.open("GET", "controllers/search.php", true);
+                xhttp.open("GET", "search.php", true);
 
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
@@ -59,9 +59,7 @@
 
                 for(var i = 0; i < movies_db.length; i++){
 
-                    console.log(movies_db[i].title.indexOf(search_bar_value));
-
-                    if(movies_db[i].title.indexOf(search_bar_value)){
+                    if(movies_db[i].title.toLowerCase().indexOf(search_bar_value.toLowerCase()) != -1){
                         link.textContent = movies_db[i].title;
                         link.href = 'movie_detail.php?movie_id=' + movies_db[i].movie_id;
                         div.style.display = 'block';
