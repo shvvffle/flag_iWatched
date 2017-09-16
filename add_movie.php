@@ -1,89 +1,86 @@
 <?php
     require_once("config.php");
 
-    // get user data
- 	$user_logged = $_SESSION["user_id"];
+    if(isset($_SESSION["user_id"])){
+        $user_logged = $_SESSION["user_id"];
+    	// get user data
 
-    if(!isset($user_logged)) {
-		header("Location: index.php");
-		exit;
-	}
-
- 	$user_query = $db->prepare("
- 		SELECT user_id, username 
- 		FROM users WHERE user_id = $user_logged
-    ");
-    $user_query->execute();
-    $user = $user_query->fetchAll( PDO::FETCH_ASSOC );
+	 	$user_query = $db->prepare("
+	 		SELECT user_id, username 
+	 		FROM users WHERE user_id = ?
+	    ");
+	    $user_query->execute( array($user_logged) );
+	    $user = $user_query->fetchAll( PDO::FETCH_ASSOC );
 
 
-    // check form validation
-	$allowed_extensions = array(
-		"image/jpeg" => ".jpg",
-		"image/png" => ".png"
-	);
+	    // check form validation
+		$allowed_extensions = array(
+			"image/jpeg" => ".jpg",
+			"image/png" => ".png"
+		);
 
-	if($_SERVER['REQUEST_METHOD'] == "POST") {
-		foreach($_POST as $key => $value) {
-			$_POST[$key] = strip_tags(trim($value));
-		}
-
-		if(
-			!empty($_POST["title"]) &&
-			!empty($_POST["release_year"]) &&
-			!empty($_POST["director"]) &&
-			!empty($_POST["actors"]) &&
-			!empty($_POST["genre"]) &&
-			!empty($_POST["description"]) &&
-			!empty($_POST["rating"]) &&
-			($_FILES["cover"]["type"] === "image/jpeg" || $_FILES["cover"]["type"] === "image/png") &&
-			$_FILES["cover"]["size"] > 0 &&
-			$_FILES["cover"]["size"] <= 2000000 &&
-			$_FILES["cover"]["error"] === 0
-		) {
-
-			/* check and confirm if the movie already exists */
-			$query = $db->prepare("SELECT title FROM movies WHERE title = ?");
-			$query->execute( array($_POST["title"]) );
-			$result = $query->fetchAll( PDO::FETCH_ASSOC );
-
-			if(empty($result)) {
-				/* if the movie doesn't exist, INSERT in db */
-				$filename = date("YmdHis") . "_" .mt_rand(10000, 99999) . $allowed_extensions[$_FILES["cover"]["type"]];
-				move_uploaded_file($_FILES["cover"]["tmp_name"], "../images/" . $filename);
-
-				$query = $db->prepare("
-					INSERT INTO movies
-					(title, release_year, director, actors, genre, description, rating, cover, user_id)
-					VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
-				");
-				$result = $query->execute(
-					array(
-						$_POST["title"],
-						$_POST["release_year"],
-						$_POST["director"],
-						$_POST["actors"],
-						$_POST["genre"],
-						$_POST["description"],
-						$_POST["rating"],
-						$filename,
-						$user_logged
-					)
-				);
-
-				$movie_id = $db->lastInsertId();
-
-				if(!$result){
-					echo $db->errorInfo();
-					exit;
-				}
-
-				$message = "Movie added successfully!";
-			} else {
-				$message = "This movie already exists.";
+		if($_SERVER['REQUEST_METHOD'] == "POST") {
+			foreach($_POST as $key => $value) {
+				$_POST[$key] = strip_tags(trim($value));
 			}
-		} else {
-			$message = "Fill in all fields correctly.";
+
+			if(
+				!empty($_POST["title"]) &&
+				!empty($_POST["release_year"]) &&
+				!empty($_POST["director"]) &&
+				!empty($_POST["actors"]) &&
+				!empty($_POST["genre"]) &&
+				!empty($_POST["description"]) &&
+				!empty($_POST["rating"]) &&
+				($_FILES["cover"]["type"] === "image/jpeg" || $_FILES["cover"]["type"] === "image/png") &&
+				$_FILES["cover"]["size"] > 0 &&
+				$_FILES["cover"]["size"] <= 2000000 &&
+				$_FILES["cover"]["error"] === 0
+			) {
+
+				/* check and confirm if the movie already exists */
+				$query = $db->prepare("SELECT title FROM movies WHERE title = ?");
+				$query->execute( array($_POST["title"]) );
+				$result = $query->fetchAll( PDO::FETCH_ASSOC );
+
+				if(empty($result)) {
+					/* if the movie doesn't exist, INSERT in db */
+					$filename = date("YmdHis") . "_" .mt_rand(10000, 99999) . $allowed_extensions[$_FILES["cover"]["type"]];
+					move_uploaded_file($_FILES["cover"]["tmp_name"], "images/" . $filename);
+
+					$query = $db->prepare("
+						INSERT INTO movies
+						(title, release_year, director, actors, genre, description, rating, cover, user_id)
+						VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
+					");
+					$result = $query->execute(
+						array(
+							$_POST["title"],
+							$_POST["release_year"],
+							$_POST["director"],
+							$_POST["actors"],
+							$_POST["genre"],
+							$_POST["description"],
+							$_POST["rating"],
+							$filename,
+							$user_logged
+						)
+					);
+
+					$movie_id = $db->lastInsertId();
+
+					if(!$result){
+						echo $db->errorInfo();
+						exit;
+					}
+
+					$message = "Movie added successfully!";
+				} else {
+					$message = "This movie already exists.";
+				}
+			} else {
+				$message = "Fill in all fields correctly.";
+			}
 		}
 	}
 ?>

@@ -1,22 +1,21 @@
 <?php
     require_once("config.php");
 
-    $user_logged = $_SESSION["user_id"];
-
-    if(isset($user_logged)){
+    if(isset($_SESSION["user_id"])){
+        $user_logged = $_SESSION["user_id"];
         // get user data
         $query = $db->prepare("
-                    SELECT user_id, username FROM users WHERE user_id = $user_logged
+                    SELECT user_id, username FROM users WHERE user_id = ?
                 ");
-        $query->execute();
+        $query->execute(array($user_logged));
         $user = $query->fetchAll( PDO::FETCH_ASSOC );
 
         // load movies
         $fetch_movie = $db->prepare("
-                SELECT * FROM movies WHERE user_id = $user_logged ORDER BY movie_id
+                SELECT * FROM movies WHERE user_id = ? ORDER BY movie_id
             ");
 
-        $fetch_movie->execute();
+        $fetch_movie->execute(array($user_logged));
         $movies = $fetch_movie->fetchAll( PDO::FETCH_ASSOC );
     }
 ?>
@@ -72,19 +71,17 @@
             </div>
             <div class="menu">
                 <a href="#">Movies</a>
-                <?php
-                    if(isset($user_logged)){
-                        echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
-                    } else {
-                        echo "<a href='login.php'>Login</a>";
-
-                    }
-                ?>
+                <p class='welcome'>Welcome back <?php echo $user[0]["username"]; ?>!</p>
             </div>
         </nav>
     </header>
     <section class="intro-movie-list">
-        <h2>Don't you have anything better to do, <span class="red"><?php echo $user[0]["username"]; ?>?</span> Life isn't only about watching movies...</h2>
+    <?php
+        if(empty($movies)){ ?>
+            <h2>Hm... you haven't watched any movie yet, <span class="red"><?php echo $user[0]["username"]; ?>?</span> I find it hard to believe.</h2>
+    <?php } else { ?>
+            <h2>Don't you have anything better to do, <span class="red"><?php echo $user[0]["username"]; ?>?</span> Life isn't only about watching movies...</h2>
+    <?php } ?>
         <div class="movie-list">
         <?php
             foreach($movies as $movie) {

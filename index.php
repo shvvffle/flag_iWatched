@@ -1,14 +1,13 @@
 <?php
     require_once("config.php");
 
-    $user_logged = $_SESSION["user_id"];
-
-    if(isset($user_logged)){
+    if(isset($_SESSION["user_id"])){
+        $user_logged = $_SESSION["user_id"];
         // get user data
         $query = $db->prepare("
-                    SELECT user_id, username FROM users WHERE user_id = $user_logged
+                    SELECT user_id, username FROM users WHERE user_id = ?
                 ");
-        $query->execute();
+        $query->execute( array($_SESSION["user_id"]) );
         $user = $query->fetchAll( PDO::FETCH_ASSOC );
 
         // load movies

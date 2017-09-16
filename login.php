@@ -1,11 +1,6 @@
 <?php
     require_once("config.php");
-
-    if(isset($_SESSION["user_id"])) {
-		header("Location: index.php");
-		exit;
-	}
-
+    
 	if(isset($_POST["submit"])) {
 		/* sanitize */
 		foreach($_POST as $key => $value) {
@@ -62,13 +57,6 @@
                 <h1><a href="index.php" class="logo">iWatched</a></h1>
             </div>
             <div class="menu">
-                <?php
-                    if(isset($user_logged)){
-                ?>
-                    <a href="movies.php">Movies</a>
-                <?php
-                    }
-                ?>
                 <a class="selected" href="#">Login</a>
             </div>
         </nav>
