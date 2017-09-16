@@ -57,25 +57,24 @@
                     link = document.createElement('a');
 
                 for(var i = 0; i < movies_db.length; i++){
-
                     if(movies_db[i].title.toLowerCase().indexOf(search_bar_value.toLowerCase()) != -1){
                         link.textContent = movies_db[i].title;
                         link.href = 'movie_detail.php?movie_id=' + movies_db[i].movie_id;
-                        div.style.display = 'block';
-                        div.appendChild(link);
-                        break;
+                        if(div.innerHTML.indexOf(link.textContent) != -1) {
+                            break;
+                        } else {
+                           div.style.display = 'block';
+                           div.appendChild(link);
+                        }
                     }
                 }
             }
 
             search_bar.onkeyup = function(){
+                var timeout = 0;
+                clearTimeout(timeout);
                 if(this.value.length > 2){
                     timeout = setTimeout(queryDB, 500);
-                }
-                if(!this.value.length){
-                    var suggestions_search = document.getElementById('suggestions_search');
-                    suggestions_search.style.display = 'none';
-                    suggestions_search.innerHTML = '';
                 }
             }
         }
