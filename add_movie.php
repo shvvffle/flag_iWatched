@@ -6,8 +6,7 @@
     	// get user data
 
 	 	$user_query = $db->prepare("
-	 		SELECT user_id, username 
-	 		FROM users WHERE user_id = ?
+	 		SELECT user_id, username FROM users WHERE user_id = ?
 	    ");
 	    $user_query->execute( array($user_logged) );
 	    $user = $user_query->fetchAll( PDO::FETCH_ASSOC );
@@ -68,11 +67,6 @@
 					);
 
 					$movie_id = $db->lastInsertId();
-
-					if(!$result){
-						echo $db->errorInfo();
-						exit;
-					}
 
 					$message = "Movie added successfully!";
 				} else {
