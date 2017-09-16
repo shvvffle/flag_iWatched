@@ -212,7 +212,7 @@ nav a:hover {
 
 .last-seen {
   margin-top: 40px;
-  display: flex;
+  display: inline-flex;
 }
 
 .intro-movie-list {

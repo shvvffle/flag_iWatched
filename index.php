@@ -63,15 +63,19 @@
                         link.href = 'movie_detail.php?movie_id=' + movies_db[i].movie_id;
                         div.style.display = 'block';
                         div.appendChild(link);
+                        break;
                     }
                 }
             }
 
             search_bar.onkeyup = function(){
-                var timeout = 0;
-                clearTimeout(timeout);
                 if(this.value.length > 2){
                     timeout = setTimeout(queryDB, 500);
+                }
+                if(!this.value.length){
+                    var suggestions_search = document.getElementById('suggestions_search');
+                    suggestions_search.style.display = 'none';
+                    suggestions_search.innerHTML = '';
                 }
             }
         }
