@@ -71,10 +71,17 @@
             }
 
             search_bar.onkeyup = function(){
-                var timeout = 0;
+                var timeout = 0,
+                    suggestions_search = document.getElementById('suggestions_search');
+
                 clearTimeout(timeout);
                 if(this.value.length > 2){
                     timeout = setTimeout(queryDB, 500);
+                }
+
+                if(!this.value.length && suggestions_search.hasChildNodes()){
+                    suggestions_search.innerHTML = '';
+                    suggestions_search.style.display = 'none';
                 }
             }
         }
