@@ -76,6 +76,9 @@
 				$message = "Fill in all fields correctly.";
 			}
 		}
+	} else {
+		header("Location: index.php");
+		exit;
 	}
 ?>
 <!DOCTYPE html>

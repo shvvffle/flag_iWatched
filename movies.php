@@ -17,6 +17,9 @@
 
         $fetch_movie->execute(array($user_logged));
         $movies = $fetch_movie->fetchAll( PDO::FETCH_ASSOC );
+    } else {
+        header("Location: index.php");
+        exit;
     }
 ?>
 
@@ -49,6 +52,59 @@
                     var success_msg = document.getElementById('success_msg').innerHTML = "The movie has been deleted successfully";
                 }
             }
+            
+            function queryDB(){
+                var xhttp = new XMLHttpRequest(),
+                    response;
+
+                xhttp.open("GET", "search.php", true);
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        response = JSON.parse(xhttp.responseText);
+                        compareResults(response);
+                    }
+                };
+                xhttp.send();
+            }
+
+            function compareResults(response){
+                var search_bar = document.getElementById('search_bar'),
+                    div = document.getElementById('suggestions_search'),
+                    search_bar_value = search_bar.value,
+                    movies_db = response,
+                    movie_title,
+                    movie_id,
+                    link = document.createElement('a');
+
+                for(var i = 0; i < movies_db.length; i++){
+                    if(movies_db[i].title.toLowerCase().indexOf(search_bar_value.toLowerCase()) != -1){
+                        link.textContent = movies_db[i].title;
+                        link.href = 'movie_detail.php?movie_id=' + movies_db[i].movie_id;
+                        if(div.innerHTML.indexOf(link.textContent) != -1) {
+                            break;
+                        } else {
+                           div.style.display = 'block';
+                           div.appendChild(link);
+                        }
+                    }
+                }
+            }
+
+            search_bar.onkeyup = function(){
+                var timeout = 0,
+                    suggestions_search = document.getElementById('suggestions_search');
+
+                clearTimeout(timeout);
+                if(this.value.length > 2){
+                    timeout = setTimeout(queryDB, 500);
+                }
+
+                if(!this.value.length && suggestions_search.hasChildNodes()){
+                    suggestions_search.innerHTML = '';
+                    suggestions_search.style.display = 'none';
+                }
+            }
         }
     </script>   
 </head>
@@ -65,9 +121,10 @@
                     <i class="fa fa-search"></i>
                   </div>
                   <div class="search-input">
-                    <input type="search" class="search-bar" placeholder="Search for a movie...">
+                    <input type="search" id="search_bar" class="search-bar" placeholder="Search for a movie...">
                   </div>
                 </div>
+                <div id="suggestions_search"></div>
             </div>
             <div class="menu">
                 <a href="#">Movies</a>
