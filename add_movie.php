@@ -101,7 +101,8 @@
             </div>
             <div class="menu">
                 <a href="movies.php">Movies</a>
-                <p class='welcome'>Welcome back <?php echo $user[0]["username"]; ?>!</p>
+                <p class="welcome">Welcome back <?php echo $user[0]["username"]; ?>!</p>
+                <a href="logout.php">Log out</a>
             </div>
         </nav>
     </header>

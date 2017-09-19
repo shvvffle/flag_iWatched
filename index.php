@@ -116,6 +116,7 @@
                 <?php
                     if(isset($user_logged)){
                         echo "<p class='welcome'>Welcome back " .$user[0]["username"]. "!</p>";
+                        echo "<a href='logout.php'>Log out</a>";
                     } else {
                         echo "<a href='login.php'>Login</a>";
 

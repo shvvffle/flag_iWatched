@@ -37,9 +37,9 @@
         window.onload = function() {
             var buttons = document.querySelectorAll('.delete-movie');
 
-            for(var i = 0; i < buttons.length; i++) {
+            for(var i = 0; i < buttons.length; i++){
 
-                buttons[i].onclick = function() {
+                buttons[i].onclick = function(){
                     var movie_id = this.dataset.id;
                     var param = "request=delete&movie_id=" + movie_id;
 
@@ -128,7 +128,8 @@
             </div>
             <div class="menu">
                 <a href="#">Movies</a>
-                <p class='welcome'>Welcome back <?php echo $user[0]["username"]; ?>!</p>
+                <p class="welcome">Welcome back <?php echo $user[0]["username"]; ?>!</p>
+                <a href="logout.php">Log out</a>
             </div>
         </nav>
     </header>
