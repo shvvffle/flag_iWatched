@@ -127,7 +127,7 @@
                 <div id="suggestions_search"></div>
             </div>
             <div class="menu">
-                <a href="#">Movies</a>
+                <a href="#" class="selected">Movies</a>
                 <p class="welcome">Welcome back <?php echo $user[0]["username"]; ?>!</p>
                 <a href="logout.php">Log out</a>
             </div>

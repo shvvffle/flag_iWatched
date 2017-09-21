@@ -25,12 +25,17 @@
 
 			if(
 				!empty($_POST["title"]) &&
-				!empty($_POST["release_year"]) &&
+				!empty(is_int($_POST["release_year"])) &&
 				!empty($_POST["director"]) &&
 				!empty($_POST["actors"]) &&
 				!empty($_POST["genre"]) &&
 				!empty($_POST["description"]) &&
 				!empty($_POST["rating"]) &&
+				strlen($_POST["description"]) <= 65535 &&
+				strlen($_POST["title"]) <= 255 &&
+				strlen($_POST["director"]) <= 255 &&
+				strlen($_POST["actors"]) <= 255 &&
+				strlen($_POST["genre"]) <= 255 &&
 				($_FILES["cover"]["type"] === "image/jpeg" || $_FILES["cover"]["type"] === "image/png") &&
 				$_FILES["cover"]["size"] > 0 &&
 				$_FILES["cover"]["size"] <= 2000000 &&
@@ -117,35 +122,35 @@
 					<span class="fa fa-film" aria-hidden="true"></span>
 					<span class="hidden">Movie Title</span>
 				</label>
-				<input type="text" name="title" placeholder="Movie Title" required>
+				<input type="text" name="title" placeholder="Movie Title *" maxlength="255" required>
 			</div>
 			<div class="release-date">
 				<label>
 					<span class="fa fa-calendar-o" aria-hidden="true"></span>
 					<span class="hidden">Movie Release Year Date</span>
 				</label>
-				<input type="text" name="release_year" placeholder="Movie Release Year Date" required>
+				<input type="text" name="release_year" placeholder="Movie Release Year Date *" maxlength="4" required>
 			</div>
 			<div class="director">
 				<label>
 					<span class="fa fa-video-camera" aria-hidden="true"></span>
 					<span class="hidden">Movie Director</span>
 				</label>
-				<input type="text" name="director" placeholder="Movie Director" required>
+				<input type="text" name="director" placeholder="Movie Director *" maxlength="255" required>
 			</div>
 			<div class="actors">
 				<label>
 					<span class="fa fa-user-o" aria-hidden="true"></span>
 					<span class="hidden">Movie Actors</span>
 				</label>
-				<input type="text" name="actors" placeholder="Movie Actors" required>
+				<input type="text" name="actors" placeholder="Movie Actors *"  maxlength="255" required>
 			</div>
 			<div class="genre">
 				<label>
 					<span class="fa fa-flask" aria-hidden="true"></span>
 					<span class="hidden">Movie Genre</span>
 				</label>
-				<input type="text" name="genre" placeholder="Movie Genre" required>
+				<input type="text" name="genre" placeholder="Movie Genre *"  maxlength="255" required>
 			</div>
 			<div class="rating">
 				<label>
@@ -153,7 +158,7 @@
 					<span class="hidden">Movie Rating</span>
 				</label>
 				<select name="rating">
-					<option value="" disabled selected>Movie Rating</option>
+					<option value="" disabled selected>Movie Rating *</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -166,14 +171,14 @@
 					<span class="fa fa-commenting" aria-hidden="true"></span>
 					<span class="hidden">Movie Description</span>
 				</label>
-				<textarea name="description" placeholder="Movie Description" required></textarea>
+				<textarea name="description" maxlength="65535" placeholder="Movie Description *" required></textarea>
 			</div>
 			<div class="cover">
 				<label>
 					<span class="fa fa-picture-o" aria-hidden="true"></span>
 					<span class="hidden">Movie Cover</span>
 				</label>
-				<input type="file" name="cover" placeholder="Movie Cover">
+				<input type="file" name="cover" placeholder="Movie Cover *" required>
 			</div>
 			<div class="submit">
 				<input class="add" type="submit" name="submit" value="Add a movie">

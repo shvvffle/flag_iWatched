@@ -12,7 +12,7 @@
 
         // load movies
         $fetch_movie = $db->prepare("
-                SELECT * FROM movies WHERE user_id = $user_logged ORDER BY movie_id LIMIT 4
+                SELECT * FROM movies WHERE user_id = $user_logged ORDER BY movie_id DESC LIMIT 4
             ");
 
         $fetch_movie->execute();
@@ -92,7 +92,7 @@
     <header>
         <nav>
             <div class="logo">
-                <h1><a href="#" class="logo">iWatched</a></h1>
+                <h1><a href="#" class="logo selected">iWatched</a></h1>
             </div>
             <div class="search-bar">
                 <div class="search-container">

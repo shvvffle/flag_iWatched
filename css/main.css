@@ -64,10 +64,11 @@ nav {
   z-index: 100;
 }
 
-nav a:hover {
-  color: #2c3338;
+nav a:hover, .selected {
   font-weight: bold;
-  text-decoration: line-through;
+  border-top: 4px solid #fff;
+  padding: 3px 0;
+  margin-top: -5px;
 }
 
 .logo h1 a {
@@ -79,6 +80,10 @@ nav a:hover {
   margin: 10px 25px;
 }
 
+.logo h1 a:hover {
+  margin-top: 5px;
+}
+
 .menu {
   display: flex;
   float: right;
@@ -88,12 +93,7 @@ nav a:hover {
 .menu a {
   margin-right: 30px;
   color: #fff;
-}
-
-.menu a.selected {
-  color: #2c3338;
-  text-decoration: line-through;
-  font-weight: bold;
+  transition: 0.3s ease;
 }
 
 .menu p.welcome {
@@ -268,7 +268,7 @@ nav a:hover {
 
 .movie-thumb:hover .hover-movie-detail {
   display: block;
-  background: #414446;
+  background: rgba(0, 0, 0, 0.5);
   font-size: 20px;
   position: absolute;
   width: 250px;

@@ -9,6 +9,9 @@
 		if(
 			!empty($_POST["username"]) &&
 			!empty($_POST["password"]) &&
+			strlen($_POST["username"]) <= 255 &&
+			strlen($_POST["email"]) <= 255 &&
+			strlen($_POST["password"]) <= 255 &&
 			$_SESSION["captcha"] === $_POST["captcha"] &&
 			filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) &&
 			$_POST["password"] === $_POST["rep_password"]
@@ -80,28 +83,28 @@
 					<span class="fa fa-envelope" aria-hidden="true"></span>
 					<span class="hidden">Email</span>
 				</label>
-				<input type="email" name="email" placeholder="Email" required>
+				<input type="email" name="email" placeholder="Email *" maxlength="255" required>
 			</div>
 			<div class="username">
 				<label>
 					<span class="fa fa-user" aria-hidden="true"></span>
 					<span class="hidden">Username</span>
 				</label>
-				<input type="text" name="username" placeholder="Username" required>
+				<input type="text" name="username" placeholder="Username *" maxlength="255" required>
 			</div>
 			<div class="password">
 				<label>
 					<span class="fa fa-lock" aria-hidden="true"></span>
 					<span class="hidden">Password</span>
 				</label>
-				<input type="password" name="password" placeholder="Password" required>
+				<input type="password" name="password" placeholder="Password *" maxlength="255" required>
 			</div>
 			<div class="repeat-password">
 				<label>
 					<span class="fa fa-lock red" aria-hidden="true"></span>
 					<span class="hidden">Repeat password</span>
 				</label>
-				<input type="password" name="rep_password" placeholder="Repeat password" required>
+				<input type="password" name="rep_password" placeholder="Repeat password *" maxlength="255" required>
 			</div>
 			<div class="captcha">
 				<img src="captcha.php" alt="captcha">

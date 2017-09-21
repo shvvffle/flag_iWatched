@@ -32,6 +32,7 @@
         </nav>
     </header>
     <section class="intro-not-logged">
+        <span class="fa fa-handshake-o" aria-hidden="true"></span>
         <h2>You have been successfully logged out.</h2>
         <p>If you want, you can always <a href="login.php">login</a> again!</p>
      </section>
